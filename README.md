@@ -3,6 +3,8 @@
 
 [![Build Status](https://travis-ci.org/jimevins/glabels-qt-tmp.svg?branch=master)](https://travis-ci.org/jimevins/glabels-qt-tmp)
 
+TEST
+
 *******************************************************************************
 
 ## What is gLabels-qt?
