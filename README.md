@@ -1,7 +1,7 @@
 ![logo](glabels/images/glabels-logo.png)
 ![gLabels Label Designer](glabels/images/glabels-label-designer.png)
 
-[![Build Status](https://travis-ci.org/jimevins/glabels-qt.svg?branch=master)](https://travis-ci.org/jimevins/glabels-qt)
+[![Build Status](https://travis-ci.org/jimevins/glabels-qt-tmp.svg?branch=master)](https://travis-ci.org/jimevins/glabels-qt-tmp)
 
 *******************************************************************************
 
@@ -45,9 +45,9 @@ expect compatability or consistency of features between snapshots.
 
 | Platform | Files |
 |:---------|:------|
-| Linux x86_64 [AppImage](http:appimage.org): *Download, make it executable, and run!* | [glabels-continuous-x86_64.AppImage](https://github.com/jimevins/glabels-qt/releases/download/continuous/glabels-continuous-x86_64.AppImage) |
-| Source Code TAR.GZ | [continuous.tar.gz](https://github.com/jimevins/glabels-qt/archive/continuous.tar.gz) |
-| Source Code ZIP    | [continuous.zip](https://github.com/jimevins/glabels-qt/archive/continuous.tar.gz) |
+| Linux x86_64 [AppImage](http:appimage.org): *Download, make it executable, and run!* | [glabels-continuous-x86_64.AppImage](https://github.com/jimevins/glabels-qt-tmp/releases/download/continuous/glabels-continuous-x86_64.AppImage) |
+| Source Code TAR.GZ | [continuous.tar.gz](https://github.com/jimevins/glabels-qt-tmp/archive/continuous.tar.gz) |
+| Source Code ZIP    | [continuous.zip](https://github.com/jimevins/glabels-qt-tmp/archive/continuous.tar.gz) |
 
 
 ## Build Instructions
