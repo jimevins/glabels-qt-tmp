@@ -19,7 +19,7 @@ script:
   - sudo make DESTDIR=appdir install ; sudo chown -R $USER appdir ; find appdir/
 
 after_success:
-  - wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
+  - wget -c "https://github.com/jimevins/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
   - chmod a+x linuxdeployqt*.AppImage
   - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
   - export LD_LIBRARY_PATH=/opt/qt59/lib/:$LD_LIBRARY_PATH
@@ -28,7 +28,7 @@ after_success:
   - find ./appdir -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
   - ls -lh ./gLabels*.AppImage
   - mv ./gLabels*.AppImage glabels-continuous-x86_64.AppImage
-  - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+  - wget -c https://github.com/jimevins/uploadtool/raw/master/upload.sh
   - bash ./upload.sh glabels-continuous-x86_64.AppImage
   
 branches:
