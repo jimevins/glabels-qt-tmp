@@ -57,7 +57,7 @@ Character | Description
 `s`       | string value.
 
 ### Default-Value-Modifier (`=`)
-The default value modifier is used to set a default value for the field if its value is undefined. Its syntax is
+The default value modifier is used to set a default value for the field if its value is undefined or empty. Its syntax is
 
 ```ebnf
 default-value-modifier = "=" value ;
