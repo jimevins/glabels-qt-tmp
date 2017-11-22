@@ -14,7 +14,7 @@ The general syntax of a substitution field is
 ```ebnf
 substitution-field = "${" field-name [ ":" modifiers ] "}" ;
 modifiers          = modifier [ ":" modifiers ] ;
-modifier           = format-modifier | default-value-modifier ;
+modifier           = format-modifier | default-value-modifier | new-line-modifier;
 ```
 
 Modifiers
@@ -72,6 +72,21 @@ Escape sequence | actual character
 `\\`            | backslash `\`
 
 > :arrow_right: This modifier does not modify the value of a variable, it only uses this value if the variable is not defined.  For example, if the variable `${x}` is undefined, the string "`${x:=1} ${x:=2}`" would be printed as "`1 2`".  Otherwise, if `${x}` was defined as "`3`", it would be printed as "`3 3`".
+
+### New-Line-Modifier ('n')
+This modifier is used to prepend a newline to the printed value, if the value is undefined or empty.  Its syntax is simply:
+
+```ebnf
+new-line-modifier = "n" ;
+```
+
+For example, this modifier is primarily intended to handle the following use case:
+```
+${NAME}
+${ADDR1}${ADDR2:n}
+${CITY} ${STATE} ${ZIP}
+```
+`${ADDR2} would be printed on its own line, if and only if it is set.
 
 
 Document Merge Fields
