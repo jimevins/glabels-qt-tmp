@@ -86,7 +86,7 @@ ${NAME}
 ${ADDR1}${ADDR2:n}
 ${CITY} ${STATE} ${ZIP}
 ```
-`${ADDR2} would be printed on its own line, if and only if it is set.
+`${ADDR2}` would be printed on its own line, if and only if it is set.
 
 
 Document Merge Fields
