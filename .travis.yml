@@ -19,6 +19,8 @@ script:
   - make -j4
   - sudo make DESTDIR=appdir install ; sudo chown -R $USER appdir ; find appdir/
 
+after_success:
+
 deploy:
   # require the branch name to be master
   if: branch = master
