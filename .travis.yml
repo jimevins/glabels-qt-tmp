@@ -20,6 +20,7 @@ script:
   - sudo make DESTDIR=appdir install ; sudo chown -R $USER appdir ; find appdir/
 
 after_success:
+  - echo "Success"
 
 deploy:
   # require the branch name to be master
