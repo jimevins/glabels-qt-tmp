@@ -20,9 +20,6 @@ script:
   - sudo make DESTDIR=appdir install ; sudo chown -R $USER appdir ; find appdir/
 
 after_success:
-  - echo "Success"
-
-deploy:
   - wget -c "https://github.com/jimevins/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
   - chmod a+x linuxdeployqt*.AppImage
   - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
@@ -34,8 +31,13 @@ deploy:
   - mv ./gLabels*.AppImage glabels-continuous-x86_64.AppImage
   - wget -c https://github.com/jimevins/uploadtool/raw/master/upload.sh
   - bash ./upload.sh glabels-continuous-x86_64.AppImage
-  
+
 branches:
   except:
     - # Do not build tags that we create when we upload to GitHub Releases
     - /^(?i:continuous)$/
+    - /.*/
+    
+branches:
+  only:
+    - master
