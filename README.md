@@ -1,4 +1,4 @@
-![logo](glabels/icons/48x48/apps/glabels.svg)
+![logo](glabels-logo.png)
 ![gLabels Label Designer](glabels/images/glabels-label-designer.png)
 
 [![Build Status](https://travis-ci.org/jimevins/glabels-qt-tmp.svg?branch=master)](https://travis-ci.org/jimevins/glabels-qt-tmp)
