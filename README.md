@@ -1,17 +1,14 @@
-![logo](glabels-logo.png)
 ![gLabels Label Designer](glabels/images/glabels-label-designer.png)
 
-[![Build Status](https://travis-ci.org/jimevins/glabels-qt-tmp.svg?branch=master)](https://travis-ci.org/jimevins/glabels-qt-tmp)
+![screenshots](docs/images/screenshots-title-2.png)
 
-MASTER
+[![Build Status](https://travis-ci.org/jimevins/glabels-qt-tmp.svg?branch=master)](https://travis-ci.org/jimevins/glabels-qt-tmp)
 
 *******************************************************************************
 
 ## What is gLabels-qt?
 
 gLabels-qt is the development version of the next major version of gLabels (4.0).
-
-![screenshot](docs/images/screenshot.png)
 
 
 ## What's new in gLabels-qt?
