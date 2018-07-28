@@ -1074,6 +1074,369 @@
     </message>
 </context>
 <context>
+    <name>glabels::BarcodeBackends</name>
+    <message>
+        <source>Code 39</source>
+        <translation type="unfinished">Шифра 39</translation>
+    </message>
+    <message>
+        <source>Code 39 Extended</source>
+        <translation type="unfinished">Шифра 39 проширено</translation>
+    </message>
+    <message>
+        <source>UPC-A</source>
+        <translation type="unfinished">УПЦ-А</translation>
+    </message>
+    <message>
+        <source>EAN-13</source>
+        <translation type="unfinished">ЕАН-13</translation>
+    </message>
+    <message>
+        <source>POSTNET (any)</source>
+        <translation type="unfinished">ПОСТНЕТ (било који)</translation>
+    </message>
+    <message>
+        <source>POSTNET-5 (ZIP only)</source>
+        <translation type="unfinished">ПОСТНЕТ-5 (ЗИП само)</translation>
+    </message>
+    <message>
+        <source>POSTNET-9 (ZIP+4)</source>
+        <translation type="unfinished">ПОСТНЕТ-9 (ЗИП+4)</translation>
+    </message>
+    <message>
+        <source>POSTNET-11 (DPBC)</source>
+        <translation type="unfinished">ПОСТНЕТ-11 (ДПБЦ)</translation>
+    </message>
+    <message>
+        <source>CEPNET</source>
+        <translation type="unfinished">ЦЕПНЕТ</translation>
+    </message>
+    <message>
+        <source>USPS Intelligent Mail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IEC16022 (DataMatrix)</source>
+        <translation type="unfinished">ИЕЦ16022 (Матрица података)</translation>
+    </message>
+    <message>
+        <source>EAN (any)</source>
+        <translation type="unfinished">ЕАН (било који)</translation>
+    </message>
+    <message>
+        <source>EAN-8</source>
+        <translation type="unfinished">ЕАН-8</translation>
+    </message>
+    <message>
+        <source>EAN-8+2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>EAN-8+5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>EAN-13+2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>EAN-13+5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UPC (UPC-A or UPC-E)</source>
+        <translation type="unfinished">УПЦ (УПЦ-А или УПЦ-Е)</translation>
+    </message>
+    <message>
+        <source>UPC-A +2</source>
+        <translation type="unfinished">УПЦ-А +2</translation>
+    </message>
+    <message>
+        <source>UPC-A +5</source>
+        <translation type="unfinished">УПЦ-А +5</translation>
+    </message>
+    <message>
+        <source>UPC-E</source>
+        <translation type="unfinished">УПЦ-Е</translation>
+    </message>
+    <message>
+        <source>UPC-E +2</source>
+        <translation type="unfinished">УПЦ-Е +2</translation>
+    </message>
+    <message>
+        <source>UPC-E +5</source>
+        <translation type="unfinished">УПЦ-Е +5</translation>
+    </message>
+    <message>
+        <source>ISBN</source>
+        <translation type="unfinished">ИСБН</translation>
+    </message>
+    <message>
+        <source>ISBN +5</source>
+        <translation type="unfinished">ИСБН +5</translation>
+    </message>
+    <message>
+        <source>Code 128</source>
+        <translation type="unfinished">Шифра 128</translation>
+    </message>
+    <message>
+        <source>Code 128C</source>
+        <translation type="unfinished">Шифра 128Ц</translation>
+    </message>
+    <message>
+        <source>Code 128B</source>
+        <translation type="unfinished">Шифра 128Б</translation>
+    </message>
+    <message>
+        <source>Interleaved 2 of 5</source>
+        <translation type="unfinished">Преплетено 2 од 5</translation>
+    </message>
+    <message>
+        <source>Codabar</source>
+        <translation type="unfinished">Кодабар</translation>
+    </message>
+    <message>
+        <source>MSI</source>
+        <translation type="unfinished">МСИ</translation>
+    </message>
+    <message>
+        <source>Plessey</source>
+        <translation type="unfinished">Плеси</translation>
+    </message>
+    <message>
+        <source>Code 93</source>
+        <translation type="unfinished">Шифра 93</translation>
+    </message>
+    <message>
+        <source>IEC18004 (QRCode)</source>
+        <translation type="unfinished">ИЕЦ18004 (КуР шифра)</translation>
+    </message>
+    <message>
+        <source>Austraila Post Standard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Australia Post Reply Paid</source>
+        <translation type="unfinished">Плаћен одговор аустралијске поште</translation>
+    </message>
+    <message>
+        <source>Australia Post Route Code</source>
+        <translation type="unfinished">Шифра достављања аустралијске поште</translation>
+    </message>
+    <message>
+        <source>Australia Post Redirect</source>
+        <translation type="unfinished">Преусмеравање аустралијске поште</translation>
+    </message>
+    <message>
+        <source>Aztec Code</source>
+        <translation type="unfinished">Астешка шифра</translation>
+    </message>
+    <message>
+        <source>Aztec Rune</source>
+        <translation type="unfinished">Астешке руне</translation>
+    </message>
+    <message>
+        <source>Code One</source>
+        <translation type="unfinished">Шифра један</translation>
+    </message>
+    <message>
+        <source>Code 11</source>
+        <translation type="unfinished">Шифра 11</translation>
+    </message>
+    <message>
+        <source>Code 16K</source>
+        <translation type="unfinished">Шифра 16К</translation>
+    </message>
+    <message>
+        <source>Code 2 of 5 Matrix</source>
+        <translation type="unfinished">Шифра 2 од 5 матрица</translation>
+    </message>
+    <message>
+        <source>Code 2 of 5 IATA</source>
+        <translation type="unfinished">Шифра 2 од 5 ИАТА</translation>
+    </message>
+    <message>
+        <source>Code 2 of 5 Data Logic</source>
+        <translation type="unfinished">Шифра 2 од 5 логичких података</translation>
+    </message>
+    <message>
+        <source>Code 32 (Italian Pharmacode)</source>
+        <translation type="unfinished">Шифра 32 (шифра италијанске фармације)</translation>
+    </message>
+    <message>
+        <source>Code 49</source>
+        <translation type="unfinished">Шифра 49</translation>
+    </message>
+    <message>
+        <source>Code 128 (Mode C supression)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DAFT Code</source>
+        <translation type="unfinished">Шифра ДАФТ</translation>
+    </message>
+    <message>
+        <source>Data Matrix</source>
+        <translation type="unfinished">Матрица података</translation>
+    </message>
+    <message>
+        <source>Deutsche Post Leitcode</source>
+        <translation type="unfinished">Шифра вођења немачке поште</translation>
+    </message>
+    <message>
+        <source>Deutsche Post Identcode</source>
+        <translation type="unfinished">Шифра препознавања немачке поште</translation>
+    </message>
+    <message>
+        <source>Dutch Post KIX Code</source>
+        <translation type="unfinished">Шифра КИКс немачке поште</translation>
+    </message>
+    <message>
+        <source>EAN</source>
+        <translation type="unfinished">ЕАН</translation>
+    </message>
+    <message>
+        <source>Grid Matrix</source>
+        <translation type="unfinished">Матрица мреже</translation>
+    </message>
+    <message>
+        <source>GS1-128</source>
+        <translation type="unfinished">ГС1-128</translation>
+    </message>
+    <message>
+        <source>GS1 DataBar-14</source>
+        <translation type="unfinished">ГС1 Траке података-14</translation>
+    </message>
+    <message>
+        <source>GS1 DataBar-14 Stacked</source>
+        <translation type="unfinished">ГС1 Траке података-14 наслагано</translation>
+    </message>
+    <message>
+        <source>GS1 DataBar-14 Stacked Omni.</source>
+        <translation type="unfinished">ГС1 Траке података-14 наслагано омни.</translation>
+    </message>
+    <message>
+        <source>GS1 DataBar Extended Stacked</source>
+        <translation type="unfinished">ГС1 Траке података проширено наслагано</translation>
+    </message>
+    <message>
+        <source>HIBC Code 128</source>
+        <translation type="unfinished">ХИБЦ шифра 128</translation>
+    </message>
+    <message>
+        <source>HIBC Code 39</source>
+        <translation type="unfinished">ХИБЦ шифра 39</translation>
+    </message>
+    <message>
+        <source>HIBC Data Matrix</source>
+        <translation type="unfinished">ХИБЦ матрица података</translation>
+    </message>
+    <message>
+        <source>HIBC QR Code</source>
+        <translation type="unfinished">ХИБЦ шифра КуР</translation>
+    </message>
+    <message>
+        <source>HIBC PDF417</source>
+        <translation type="unfinished">ХИБЦ ПДФ417</translation>
+    </message>
+    <message>
+        <source>HIBC Micro PDF417</source>
+        <translation type="unfinished">ХИБЦ Микро ПДФ417</translation>
+    </message>
+    <message>
+        <source>HIBC Aztec Code</source>
+        <translation type="unfinished">ХИБЦ астешка шифра</translation>
+    </message>
+    <message>
+        <source>ITF-14</source>
+        <translation type="unfinished">ИТФ-14</translation>
+    </message>
+    <message>
+        <source>Japanese Postal</source>
+        <translation type="unfinished">Јапанска поштанска</translation>
+    </message>
+    <message>
+        <source>Korean Postal</source>
+        <translation type="unfinished">Корејанска поштанска</translation>
+    </message>
+    <message>
+        <source>LOGMARS</source>
+        <translation type="unfinished">ЛОГМАРС</translation>
+    </message>
+    <message>
+        <source>Maxicode</source>
+        <translation type="unfinished">Максишифра</translation>
+    </message>
+    <message>
+        <source>Micro PDF417</source>
+        <translation type="unfinished">Микро ПДФ417</translation>
+    </message>
+    <message>
+        <source>Micro QR Code</source>
+        <translation type="unfinished">Микро КуР шифра</translation>
+    </message>
+    <message>
+        <source>MSI Plessey</source>
+        <translation type="unfinished">МСИ Плеси</translation>
+    </message>
+    <message>
+        <source>NVE-18</source>
+        <translation type="unfinished">НВЕ-18</translation>
+    </message>
+    <message>
+        <source>PDF417</source>
+        <translation type="unfinished">ПДФ417</translation>
+    </message>
+    <message>
+        <source>PDF417 Truncated</source>
+        <translation type="unfinished">ПДФ417 скраћени</translation>
+    </message>
+    <message>
+        <source>PLANET</source>
+        <translation type="unfinished">ПЛАНЕТ</translation>
+    </message>
+    <message>
+        <source>PostNet</source>
+        <translation type="unfinished">ПостНет</translation>
+    </message>
+    <message>
+        <source>Pharmacode</source>
+        <translation type="unfinished">Фармацеутска шифра</translation>
+    </message>
+    <message>
+        <source>Pharmacode 2-track</source>
+        <translation type="unfinished">Фармацеутска шифра 2-трага</translation>
+    </message>
+    <message>
+        <source>Pharmazentral Nummer (PZN)</source>
+        <translation type="unfinished">Фармацеутски средишњи број (ПЗН)</translation>
+    </message>
+    <message>
+        <source>QR Code</source>
+        <translation type="unfinished">КуР шифра</translation>
+    </message>
+    <message>
+        <source>Royal Mail 4-State</source>
+        <translation type="unfinished">Шифра Краљевске поште са 4-стања</translation>
+    </message>
+    <message>
+        <source>Telepen</source>
+        <translation type="unfinished">Телепен</translation>
+    </message>
+    <message>
+        <source>Telepen Numeric</source>
+        <translation type="unfinished">Телепен бројевни</translation>
+    </message>
+    <message>
+        <source>USPS One Code</source>
+        <translation type="unfinished">Шифра УСПС један</translation>
+    </message>
+    <message>
+        <source>UK Plessey</source>
+        <translation type="unfinished">Британски Плеси</translation>
+    </message>
+</context>
+<context>
     <name>glabels::ColorPaletteDialog</name>
     <message>
         <source>Custom color...</source>
@@ -1136,6 +1499,31 @@
     <message>
         <source>Delete</source>
         <translation type="unfinished">Обриши</translation>
+    </message>
+</context>
+<context>
+    <name>glabels::LabelModel</name>
+    <message>
+        <source>Untitled</source>
+        <translation type="unfinished">Без наслова</translation>
+    </message>
+</context>
+<context>
+    <name>glabels::LabelModelBarcodeObject</name>
+    <message>
+        <source>No barcode data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid barcode data</source>
+        <translation type="unfinished">Неисправни подаци баркода</translation>
+    </message>
+</context>
+<context>
+    <name>glabels::LabelModelTextObject</name>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished">Текст</translation>
     </message>
 </context>
 <context>

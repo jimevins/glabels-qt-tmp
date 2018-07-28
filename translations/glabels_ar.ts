@@ -1100,6 +1100,453 @@
     </message>
 </context>
 <context>
+    <name>glabels::BarcodeBackends</name>
+    <message>
+        <source>Code 39</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Code 39 Extended</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>UPC-A</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>EAN-13</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>POSTNET (any)</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>POSTNET-5 (ZIP only)</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>POSTNET-9 (ZIP+4)</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>POSTNET-11 (DPBC)</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>CEPNET</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>USPS Intelligent Mail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IEC16022 (DataMatrix)</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>EAN (any)</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>EAN-8</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>EAN-8+2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>EAN-8+5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>EAN-13+2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>EAN-13+5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UPC (UPC-A or UPC-E)</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>UPC-A +2</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>UPC-A +5</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>UPC-E</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>UPC-E +2</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>UPC-E +5</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>ISBN</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>ISBN +5</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Code 128</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Code 128C</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Code 128B</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Interleaved 2 of 5</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Codabar</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>MSI</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Plessey</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Code 93</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>IEC18004 (QRCode)</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Austraila Post Standard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Australia Post Reply Paid</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Australia Post Route Code</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Australia Post Redirect</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Aztec Code</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Aztec Rune</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Code One</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Code 11</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Code 16K</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Code 2 of 5 Matrix</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Code 2 of 5 IATA</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Code 2 of 5 Data Logic</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Code 32 (Italian Pharmacode)</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Code 49</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Code 128 (Mode C supression)</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>DAFT Code</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Data Matrix</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Deutsche Post Leitcode</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Deutsche Post Identcode</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Dutch Post KIX Code</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>EAN</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Grid Matrix</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>GS1-128</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>GS1 DataBar-14</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>GS1 DataBar-14 Stacked</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>GS1 DataBar-14 Stacked Omni.</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>GS1 DataBar Extended Stacked</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>HIBC Code 128</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>HIBC Code 39</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>HIBC Data Matrix</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>HIBC QR Code</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>HIBC PDF417</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>HIBC Micro PDF417</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>HIBC Aztec Code</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>ITF-14</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Japanese Postal</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Korean Postal</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>LOGMARS</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Maxicode</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Micro PDF417</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Micro QR Code</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>MSI Plessey</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>NVE-18</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>PDF417</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>PDF417 Truncated</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>PLANET</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>PostNet</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Pharmacode</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Pharmacode 2-track</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Pharmazentral Nummer (PZN)</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>QR Code</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Royal Mail 4-State</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Telepen</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>Telepen Numeric</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>USPS One Code</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+    <message>
+        <source>UK Plessey</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+</context>
+<context>
     <name>glabels::ColorPaletteDialog</name>
     <message>
         <source>Custom color...</source>
@@ -1162,6 +1609,33 @@
     <message>
         <source>Delete</source>
         <translation type="unfinished">حذف</translation>
+    </message>
+</context>
+<context>
+    <name>glabels::LabelModel</name>
+    <message>
+        <source>Untitled</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+</context>
+<context>
+    <name>glabels::LabelModelBarcodeObject</name>
+    <message>
+        <source>No barcode data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid barcode data</source>
+        <translation type="unfinished">
+            </translation>
+    </message>
+</context>
+<context>
+    <name>glabels::LabelModelTextObject</name>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished">نص</translation>
     </message>
 </context>
 <context>

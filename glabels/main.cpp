@@ -55,8 +55,10 @@ int main( int argc, char **argv )
 	QString myTranslationsDir = glabels::model::FileUtil::translationsDir().canonicalPath();
 	
 	QTranslator qtTranslator;
+	qDebug() << "TRANSLATION_DIR = " << qtTranslationsDir;
 	if ( qtTranslator.load( locale, "qt", "_", qtTranslationsDir ) )
 	{
+		qDebug() << "FOUND QT Translations";
 		app.installTranslator(&qtTranslator);
 	}
 
