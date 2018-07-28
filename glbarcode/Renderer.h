@@ -27,12 +27,6 @@
 #include "DrawingPrimitives.h"
 
 
-/**
- * Renderer base for CAPI
- */
-extern "C" struct gbcRenderer {};
-
-
 namespace glbarcode
 {
 
@@ -44,14 +38,25 @@ namespace glbarcode
 	 *
 	 * Base class for all renderers.
 	 */
-	class Renderer : public gbcRenderer
+	class Renderer
 	{
+	protected:
+		/**
+		 * Default constructor.
+		 */
+		Renderer() = default;
+
 	public:
 		/**
 		 * Destructor.
 		 */
-		virtual ~Renderer();
+		virtual ~Renderer() = default;
 
+		/*
+		 * Non-copyable
+		 */
+		Renderer( const Renderer & ) = delete;
+		void operator=( const Renderer & ) = delete;
 
 		/**
 		 * Render list of primitives.

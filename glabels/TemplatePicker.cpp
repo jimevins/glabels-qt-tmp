@@ -38,16 +38,16 @@ namespace glabels
 		setSpacing( 24 );
 		setWordWrap( true );
 		setUniformItemSizes( true );
-		setIconSize( QSize(TEMPLATE_PREVIEW_SIZE, TEMPLATE_PREVIEW_SIZE) );
+		setIconSize( QSize(TemplatePickerItem::SIZE, TemplatePickerItem::SIZE) );
 	}
 
 
 	///
 	/// Set List of Templates to Pick From
 	///
-	void TemplatePicker::setTemplates( const QList <Template*> &tmplates )
+	void TemplatePicker::setTemplates( const QList <model::Template*> &tmplates )
 	{
-		foreach (Template *tmplate, tmplates)
+		foreach (model::Template *tmplate, tmplates)
 		{
 			new TemplatePickerItem( tmplate, this );
 		}
@@ -63,38 +63,39 @@ namespace glabels
 	{
 		foreach ( QListWidgetItem *item, findItems( "*", Qt::MatchWildcard ) )
 		{
-			TemplatePickerItem *tItem = dynamic_cast<TemplatePickerItem *>(item);
-
-			bool nameMask = tItem->tmplate()->name().contains( searchString, Qt::CaseInsensitive );
+			if (auto *tItem = dynamic_cast<TemplatePickerItem *>(item))
+			{
+				bool nameMask = tItem->tmplate()->name().contains( searchString, Qt::CaseInsensitive );
 		
-			bool sizeMask =
-				(isoMask   && tItem->tmplate()->isSizeIso())   ||
-				(usMask    && tItem->tmplate()->isSizeUs())    ||
-				(otherMask && tItem->tmplate()->isSizeOther());
+				bool sizeMask =
+					(isoMask   && tItem->tmplate()->isSizeIso())   ||
+					(usMask    && tItem->tmplate()->isSizeUs())    ||
+					(otherMask && tItem->tmplate()->isSizeOther());
 
-			bool categoryMask;
-			if ( anyCategory )
-			{
-				categoryMask = true;
-			}
-			else
-			{
-				categoryMask = false;
-				foreach ( QString id, categoryIds )
+				bool categoryMask;
+				if ( anyCategory )
 				{
-					categoryMask = categoryMask || tItem->tmplate()->hasCategory( id );
+					categoryMask = true;
 				}
-			}
+				else
+				{
+					categoryMask = false;
+					foreach ( QString id, categoryIds )
+					{
+						categoryMask = categoryMask || tItem->tmplate()->hasCategory( id );
+					}
+				}
 		
 
-			if (  nameMask && sizeMask && categoryMask )
-			{
-				item->setHidden( false );
-			}
-			else
-			{
-				item->setHidden( true );
-				item->setSelected( false );
+				if (  nameMask && sizeMask && categoryMask )
+				{
+					item->setHidden( false );
+				}
+				else
+				{
+					item->setHidden( true );
+					item->setSelected( false );
+				}
 			}
 		}
 	}
@@ -107,26 +108,27 @@ namespace glabels
 	{
 		foreach ( QListWidgetItem *item, findItems( "*", Qt::MatchWildcard ) )
 		{
-			TemplatePickerItem *tItem = dynamic_cast<TemplatePickerItem *>(item);
-
-			bool match = false;
-			foreach ( QString name, names )
+			if (auto *tItem = dynamic_cast<TemplatePickerItem *>(item))
 			{
-				if ( tItem->tmplate()->name() == name )
+				bool match = false;
+				foreach ( QString name, names )
 				{
-					match = true;
-					break;
+					if ( tItem->tmplate()->name() == name )
+					{
+						match = true;
+						break;
+					}
 				}
-			}
 
-			if (  match )
-			{
-				item->setHidden( false );
-			}
-			else
-			{
-				item->setHidden( true );
-				item->setSelected( false );
+				if (  match )
+				{
+					item->setHidden( false );
+				}
+				else
+				{
+					item->setHidden( true );
+					item->setSelected( false );
+				}
 			}
 		}
 	}
@@ -135,18 +137,18 @@ namespace glabels
 	///
 	/// Get Currently Selected Template
 	///
-	const Template *TemplatePicker::selectedTemplate()
+	const model::Template *TemplatePicker::selectedTemplate()
 	{
 		QList<QListWidgetItem *> items = selectedItems();
-		if ( items.isEmpty() )
+		if ( !items.isEmpty() )
 		{
-			return nullptr;
+			if (auto *tItem = dynamic_cast<TemplatePickerItem*>(items.first()))
+			{
+				return tItem->tmplate();
+			}
 		}
-		else
-		{
-			TemplatePickerItem *tItem = dynamic_cast<TemplatePickerItem*>(items.first());
-			return tItem->tmplate();
-		}
+		
+		return nullptr;
 	}
 
 } // namespace glabels

@@ -20,6 +20,8 @@
 
 #include "TemplatePickerItem.h"
 
+#include "MiniPreviewPixmap.h"
+
 #include <QHBoxLayout>
 #include <QIcon>
 #include <QListWidgetItem>
@@ -31,14 +33,14 @@ namespace glabels
 	///
 	/// Constructor
 	///
-	TemplatePickerItem::TemplatePickerItem( Template *tmplate, QListWidget *parent )
+	TemplatePickerItem::TemplatePickerItem( model::Template *tmplate, QListWidget *parent )
 		: QListWidgetItem(parent)
 	{
 		mTmplate = tmplate;
 
-		setIcon( QIcon(tmplate->preview()) );
+		setIcon( QIcon( MiniPreviewPixmap( tmplate, SIZE, SIZE ) ) );
 		setText( tmplate->name() );
-
+		
 		setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled );
 	}
 
@@ -46,7 +48,7 @@ namespace glabels
 	///
 	/// Template Property Getter
 	///
-	const Template *TemplatePickerItem::tmplate() const
+	const model::Template *TemplatePickerItem::tmplate() const
 	{
 		return mTmplate;
 	}

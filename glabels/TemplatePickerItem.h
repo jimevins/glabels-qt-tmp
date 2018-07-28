@@ -22,7 +22,7 @@
 #define TemplatePickerItem_h
 
 
-#include "Template.h"
+#include "model/Template.h"
 
 #include <QLabel>
 #include <QListWidget>
@@ -36,26 +36,28 @@ namespace glabels
 	///
 	class TemplatePickerItem : public QListWidgetItem
 	{
+	public:
+		static const int SIZE = 80;
 
 		/////////////////////////////////
 		// Life Cycle
 		/////////////////////////////////
 	public:
-		TemplatePickerItem( Template *tmplate, QListWidget *parent = nullptr );
+		TemplatePickerItem( model::Template *tmplate, QListWidget *parent = nullptr );
 
 
 		/////////////////////////////////
 		// Properties
 		/////////////////////////////////
 	public:
-		const Template *tmplate() const;
+		const model::Template *tmplate() const;
 
 
 		/////////////////////////////////
 		// Private Data
 		/////////////////////////////////
 	private:
-		Template *mTmplate;
+		model::Template *mTmplate;
 
 	};
 

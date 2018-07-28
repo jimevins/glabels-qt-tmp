@@ -20,9 +20,11 @@
 
 #include "SelectProductDialog.h"
 
-#include "Db.h"
-#include "Settings.h"
+#include "NotebookUtil.h"
 #include "TemplatePickerItem.h"
+
+#include "model/Db.h"
+#include "model/Settings.h"
 
 #include <QtDebug>
 
@@ -38,32 +40,35 @@ namespace glabels
 	{
 		setupUi( this );
 
-		pageSizeIsoCheck->setChecked( Settings::searchIsoPaperSizes() );
-		pageSizeUsCheck->setChecked( Settings::searchUsPaperSizes() );
-		pageSizeOtherCheck->setChecked( Settings::searchOtherPaperSizes() );
+		pageSizeIsoCheck->setChecked( model::Settings::searchIsoPaperSizes() );
+		pageSizeUsCheck->setChecked( model::Settings::searchUsPaperSizes() );
+		pageSizeOtherCheck->setChecked( model::Settings::searchOtherPaperSizes() );
 
-		allCategoriesRadio->setChecked( Settings::searchAllCategories() );
-		selectedCategoriesRadio->setChecked( !Settings::searchAllCategories() );
+		allCategoriesRadio->setChecked( model::Settings::searchAllCategories() );
+		selectedCategoriesRadio->setChecked( !model::Settings::searchAllCategories() );
 
-		categoriesCheckContainer->setEnabled( !Settings::searchAllCategories() );
-		mCategoryIdList = Settings::searchCategoryList();
+		categoriesCheckContainer->setEnabled( !model::Settings::searchAllCategories() );
+		mCategoryIdList = model::Settings::searchCategoryList();
 	
-		QList<Category*> categories = Db::categories();
-		foreach ( Category *category, categories )
+		QList<model::Category*> categories = model::Db::categories();
+		foreach ( model::Category *category, categories )
 		{
 			QCheckBox* check = new QCheckBox( category->name() );
 			check->setChecked( mCategoryIdList.contains( category->id() ) );
 			categoriesLayout->addWidget( check );
 
+			mCheckList.append( check );
 			mCheckToCategoryMap[check] = category->id();
 
 			connect( check, SIGNAL(clicked()), this, SLOT(onCategoryCheckClicked()) );
 		}
 
-		QList<Template*> tmplates = Db::templates();
+		NotebookUtil::establishSize( modeNotebook );
+
+		QList<model::Template*> tmplates = model::Db::templates();
 		templatePicker->setTemplates( tmplates );
 
-		if ( Settings::recentTemplateList().count() > 0 )
+		if ( model::Settings::recentTemplateList().count() > 0 )
 		{
 			modeNotebook->setCurrentIndex(1);
 		}
@@ -75,7 +80,7 @@ namespace glabels
 	///
 	/// Get selected template
 	///
-	const Template* SelectProductDialog::tmplate() const
+	const model::Template* SelectProductDialog::tmplate() const
 	{
 		if ( !mCanceled )
 		{
@@ -106,7 +111,7 @@ namespace glabels
 			break;
 		case 1:
 			// Recent Tab
-			templatePicker->applyFilter( Settings::recentTemplateList() );
+			templatePicker->applyFilter( model::Settings::recentTemplateList() );
 			break;
 		default:
 			qDebug() << "onModeTabChanged(): unknown tab!";
@@ -129,22 +134,13 @@ namespace glabels
 
 
 	///
-	/// Search Entry Text Changed Slot
-	///
-	void SelectProductDialog::onSearchClearButtonClicked()
-	{
-		searchEntry->setText( "" );
-	}
-
-
-	///
 	/// Page Size Check Clicked Slot
 	///
 	void SelectProductDialog::onPageSizeCheckClicked()
 	{
-		Settings::setSearchIsoPaperSizes( pageSizeIsoCheck->isChecked() );
-		Settings::setSearchUsPaperSizes( pageSizeUsCheck->isChecked() );
-		Settings::setSearchOtherPaperSizes( pageSizeOtherCheck->isChecked() );
+		model::Settings::setSearchIsoPaperSizes( pageSizeIsoCheck->isChecked() );
+		model::Settings::setSearchUsPaperSizes( pageSizeUsCheck->isChecked() );
+		model::Settings::setSearchOtherPaperSizes( pageSizeOtherCheck->isChecked() );
 
 		templatePicker->applyFilter( searchEntry->text(),
 		                             pageSizeIsoCheck->isChecked(),
@@ -170,7 +166,7 @@ namespace glabels
 		                             allCategoriesRadio->isChecked(),
 		                             mCategoryIdList );
 
-		Settings::setSearchAllCategories( allCategoriesRadio->isChecked() );
+		model::Settings::setSearchAllCategories( allCategoriesRadio->isChecked() );
 	}
 
 
@@ -189,7 +185,7 @@ namespace glabels
 		                             mCategoryIdList );
 
 
-		Settings::setSearchCategoryList( mCategoryIdList );
+		model::Settings::setSearchCategoryList( mCategoryIdList );
 	}
 
 
@@ -230,7 +226,7 @@ namespace glabels
 	{
 		mCategoryIdList.clear();
 
-		foreach( QCheckBox* check, mCheckToCategoryMap.keys() )
+		foreach( QCheckBox* check, mCheckList )
 		{
 			if ( check->isChecked() )
 			{

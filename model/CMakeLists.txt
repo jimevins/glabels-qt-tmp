@@ -1,0 +1,117 @@
+project (Model LANGUAGES CXX)
+
+#=======================================
+# Handle optional dependencies
+#=======================================
+if (${ZLIB_FOUND})
+  add_definitions (-DHAVE_ZLIB=1)
+  set (OPTIONAL_ZLIB ZLIB::ZLIB)
+else ()
+  set (OPTIONAL_ZLIB "")
+endif ()
+
+#=======================================
+# Sources
+#=======================================
+# Auto-generated files
+configure_file (Version.h.in ${CMAKE_CURRENT_BINARY_DIR}/Version.h @ONLY)
+configure_file (Config.h.in ${CMAKE_CURRENT_BINARY_DIR}/Config.h @ONLY)
+
+set (Model_sources
+  Category.cpp
+  ColorNode.cpp
+  DataCache.cpp
+  Db.cpp
+  Distance.cpp
+  FileUtil.cpp
+  Frame.cpp
+  FrameCd.cpp
+  FrameEllipse.cpp
+  FrameRect.cpp
+  FrameRound.cpp
+  Handles.cpp
+  Layout.cpp
+  Markup.cpp
+  Model.cpp
+  ModelObject.cpp
+  ModelBarcodeObject.cpp
+  ModelBoxObject.cpp
+  ModelEllipseObject.cpp
+  ModelImageObject.cpp
+  ModelLineObject.cpp
+  ModelShapeObject.cpp
+  ModelTextObject.cpp
+  Outline.cpp
+  PageRenderer.cpp
+  Paper.cpp
+  Point.cpp
+  RawText.cpp
+  Region.cpp
+  Settings.cpp
+  Size.cpp
+  StrUtil.cpp
+  SubstitutionField.cpp
+  Template.cpp
+  TextNode.cpp
+  Units.cpp
+  Vendor.cpp
+  XmlCategoryParser.cpp
+  XmlLabelCreator.cpp
+  XmlLabelParser.cpp
+  XmlPaperParser.cpp
+  XmlTemplateCreator.cpp
+  XmlTemplateParser.cpp
+  XmlUtil.cpp
+  XmlVendorParser.cpp
+)
+
+set (Model_qobject_headers
+  Model.h
+  ModelObject.h
+  ModelBarcodeObject.h
+  ModelBoxObject.h
+  ModelEllipseObject.h
+  ModelImageObject.h
+  ModelLineObject.h
+  ModelShapeObject.h
+  ModelTextObject.h
+  PageRenderer.h
+  Settings.h
+)
+
+qt5_wrap_cpp (Model_moc_sources ${Model_qobject_headers})
+
+#=====================================
+# Target
+#=====================================
+add_library (Model STATIC
+  ${Model_sources}
+  ${Model_moc_sources}
+)
+
+#target_compile_features (Model
+#  PUBLIC cxx_std_11
+#)
+set_property (TARGET Model PROPERTY CXX_STANDARD 11)
+
+target_include_directories (Model
+  PUBLIC .. ${CMAKE_CURRENT_BINARY_DIR}/..
+  PRIVATE ${CMAKE_CURRENT_BINARY_DIR}
+)
+
+target_link_libraries (Model
+  Barcode
+  Merge
+  Qt5::Core
+  Qt5::PrintSupport
+  Qt5::Xml
+  Qt5::Svg
+  ${OPTIONAL_ZLIB}
+)
+
+#=======================================
+# Subdirectories
+#=======================================
+add_subdirectory (unit_tests)
+
+

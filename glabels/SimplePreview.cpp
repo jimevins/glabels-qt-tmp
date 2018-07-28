@@ -74,7 +74,7 @@ namespace glabels
 	///
 	/// Template Property Setter
 	///
-	void SimplePreview::setTemplate( const Template *tmplate )
+	void SimplePreview::setTemplate( const model::Template *tmplate )
 	{
 		mTmplate = tmplate;
 		update();
@@ -110,10 +110,10 @@ namespace glabels
 		if ( mTmplate != nullptr )
 		{
 			// Set scene up with a 5% margin around paper
-			Distance x = -0.05 * mTmplate->pageWidth();
-			Distance y = -0.05 * mTmplate->pageHeight();
-			Distance w = 1.10 * mTmplate->pageWidth();
-			Distance h = 1.10 * mTmplate->pageHeight();
+			model::Distance x = -0.05 * mTmplate->pageWidth();
+			model::Distance y = -0.05 * mTmplate->pageHeight();
+			model::Distance w = 1.10 * mTmplate->pageWidth();
+			model::Distance h = 1.10 * mTmplate->pageHeight();
 
 			mScene->setSceneRect( x.pt(), y.pt(), w.pt(), h.pt() );
 			fitInView( mScene->sceneRect(), Qt::KeepAspectRatio );
@@ -141,9 +141,9 @@ namespace glabels
 	///
 	/// Draw Paper
 	///
-	void SimplePreview::drawPaper( const Distance& pw, const Distance& ph )
+	void SimplePreview::drawPaper( const model::Distance& pw, const model::Distance& ph )
 	{
-		QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect();
+		auto *shadowEffect = new QGraphicsDropShadowEffect();
 		shadowEffect->setColor( shadowColor );
 		shadowEffect->setOffset( shadowOffsetPixels );
 		shadowEffect->setBlurRadius( shadowRadiusPixels );
@@ -153,7 +153,7 @@ namespace glabels
 		pen.setCosmetic( true );
 		pen.setWidthF( paperOutlineWidthPixels );
 
-		QGraphicsRectItem *pageItem = new QGraphicsRectItem( 0, 0, pw.pt(), ph.pt() );
+		auto *pageItem = new QGraphicsRectItem( 0, 0, pw.pt(), ph.pt() );
 		pageItem->setBrush( brush );
 		pageItem->setPen( pen );
 		pageItem->setGraphicsEffect( shadowEffect );
@@ -167,9 +167,9 @@ namespace glabels
 	///
 	void SimplePreview::drawLabels()
 	{
-		Frame *frame = mTmplate->frames().first();
+		model::Frame *frame = mTmplate->frames().first();
 
-		foreach (Point origin, frame->getOrigins() )
+		foreach (model::Point origin, frame->getOrigins() )
 		{
 			drawLabel( origin.x(), origin.y(), frame->path() );
 		}
@@ -179,16 +179,16 @@ namespace glabels
 	///
 	/// Draw a Single Label at x,y
 	///
-	void SimplePreview::drawLabel( const Distance&     x,
-	                               const Distance&     y,
-	                               const QPainterPath& path )
+	void SimplePreview::drawLabel( const model::Distance& x,
+	                               const model::Distance& y,
+	                               const QPainterPath&    path )
 	{
 		QBrush brush( labelColor );
 		QPen pen( labelOutlineColor );
 		pen.setCosmetic( true );
 		pen.setWidthF( labelOutlineWidthPixels );
 
-		QGraphicsPathItem *labelItem  = new QGraphicsPathItem( path );
+		auto *labelItem  = new QGraphicsPathItem( path );
 		labelItem->setBrush( brush );
 		labelItem->setPen( pen );
 		labelItem->setPos( x.pt(), y.pt() );
@@ -202,12 +202,12 @@ namespace glabels
 	///
 	void SimplePreview::drawArrow()
 	{
-		Frame *frame = mTmplate->frames().first();
+		model::Frame *frame = mTmplate->frames().first();
 
-		Distance w = frame->w();
-		Distance h = frame->h();
+		model::Distance w = frame->w();
+		model::Distance h = frame->h();
 
-		Distance minWH = min( w, h );
+		model::Distance minWH = min( w, h );
 
 		QPen pen( arrowColor );
 		pen.setWidthF( 0.25*minWH.pt()*arrowScale );
@@ -216,9 +216,9 @@ namespace glabels
 
 		QBrush brush( upColor );
 
-		Point origin = frame->getOrigins().first();
-		Distance x0 = origin.x();
-		Distance y0 = origin.y();
+		model::Point origin = frame->getOrigins().constFirst();
+		model::Distance x0 = origin.x();
+		model::Distance y0 = origin.y();
 
 		QPainterPath path;
 		path.moveTo( 0,                         minWH.pt()*arrowScale/3 );
@@ -227,7 +227,7 @@ namespace glabels
 		path.lineTo( 0,                        -minWH.pt()*arrowScale   );
 		path.lineTo(  minWH.pt()*arrowScale/2, -minWH.pt()*arrowScale/2 );
 
-		QGraphicsPathItem *arrowItem = new QGraphicsPathItem( path );
+		auto *arrowItem = new QGraphicsPathItem( path );
 		arrowItem->setPen( pen );
 		arrowItem->setPos( (x0+w/2).pt(), (y0+h/2).pt() );
 		if ( mRotateFlag )

@@ -22,7 +22,7 @@
 
 #include "Constants.h"
 
-#include <stdint.h>
+#include <cstdint>
 #include <vector>
 #include <cctype>
 #include <algorithm>
@@ -40,7 +40,7 @@ namespace
 	const uint8_t CW_UPSHIFT = 235;
 
 
-	typedef struct
+	struct DMParameterEntry
 	{
 		int   nDataTotal;
 		int   nXtotal;
@@ -55,7 +55,7 @@ namespace
 		int   nYregions;
 		int   nXregion;
 		int   nYregion;
-	} DMParameterEntry;
+	};
 
 	const DMParameterEntry params[] =
 	{
@@ -294,7 +294,7 @@ namespace
 			}
 		}
 
-		return codewords.size();
+		return int( codewords.size() );
 	}
 
 

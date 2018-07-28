@@ -20,12 +20,14 @@
 
 #include "File.h"
 
-#include "FileUtil.h"
-#include "LabelModel.h"
 #include "MainWindow.h"
 #include "SelectProductDialog.h"
-#include "XmlLabelParser.h"
-#include "XmlLabelCreator.h"
+#include "TemplateDesigner.h"
+
+#include "model/FileUtil.h"
+#include "model/Model.h"
+#include "model/XmlLabelParser.h"
+#include "model/XmlLabelCreator.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
@@ -46,29 +48,29 @@ namespace glabels
 	///
 	bool File::newLabel( MainWindow *window )
 	{
-		SelectProductDialog dialog( window );
+		SelectProductDialog dialog;
 		dialog.exec();
 
-		const Template* tmplate = dialog.tmplate();
+		const model::Template* tmplate = dialog.tmplate();
 		if ( tmplate )
 		{
-			LabelModel* label = new LabelModel();
-			label->setTmplate( tmplate );
-			label->clearModified();
+			auto* model = new model::Model();
+			model->setTmplate( tmplate );
+			model->clearModified();
 
 			// Intelligently decide to rotate label by default
-			const Frame* frame = tmplate->frames().first();
-			label->setRotate( frame->h() > frame->w() );
+			const model::Frame* frame = tmplate->frames().first();
+			model->setRotate( frame->h() > frame->w() );
 
 			// Either apply to current window or open a new one
 			if ( window->isEmpty() )
 			{
-				window->setModel( label );
+				window->setModel( model );
 			}
 			else
 			{
-				MainWindow *newWindow = new MainWindow();
-				newWindow->setModel( label );
+				auto *newWindow = new MainWindow();
+				newWindow->setModel( model );
 				newWindow->show();
 			}
 
@@ -105,20 +107,20 @@ namespace glabels
 				);
 		if ( !fileName.isEmpty() )
 		{
-			LabelModel *label = XmlLabelParser::readFile( fileName );
-			if ( label )
+			model::Model *model = model::XmlLabelParser::readFile( fileName );
+			if ( model )
 			{
-				label->setFileName( fileName );
+				model->setFileName( fileName );
 				
 				// Either apply to current window or open a new one
 				if ( window->isEmpty() )
 				{
-					window->setModel( label );
+					window->setModel( model );
 				}
 				else
 				{
-					MainWindow *newWindow = new MainWindow();
-					newWindow->setModel( label );
+					auto *newWindow = new MainWindow();
+					newWindow->setModel( model );
 					newWindow->show();
 				}
 
@@ -152,7 +154,7 @@ namespace glabels
 			return true;
 		}
 
-		XmlLabelCreator::writeFile( window->model(), window->model()->fileName() );
+		model::XmlLabelCreator::writeFile( window->model(), window->model()->fileName() );
 		window->model()->clearModified();
 
 		// Save CWD
@@ -187,10 +189,10 @@ namespace glabels
 			                              QFileDialog::DontConfirmOverwrite	);
 		if ( !rawFileName.isEmpty() )
 		{
-			QString fileName = FileUtil::addExtension( rawFileName, ".glabels" );
+			QString fileName = model::FileUtil::addExtension( rawFileName, ".glabels" );
 			
 			
-			if ( QFileInfo(fileName).exists() )
+			if ( QFileInfo::exists(fileName) )
 			{
 				QMessageBox msgBox( window );
 				msgBox.setWindowTitle( tr("Save Label As") );
@@ -206,7 +208,7 @@ namespace glabels
 				}
 			}
 			
-			XmlLabelCreator::writeFile( window->model(), fileName );
+			model::XmlLabelCreator::writeFile( window->model(), fileName );
 			window->model()->setFileName( fileName );
 			window->model()->clearModified();
 		
@@ -217,6 +219,16 @@ namespace glabels
 		}
 
 		return false;
+	}
+
+
+	///
+	/// Template Designer
+	///
+	void File::templateDesigner( MainWindow *window )
+	{
+		TemplateDesigner dialog( window );
+		dialog.exec();
 	}
 
 
@@ -236,7 +248,7 @@ namespace glabels
 	{
 		foreach ( QWidget* qwidget, QApplication::topLevelWidgets() )
 		{
-			if ( MainWindow* window = qobject_cast<MainWindow*>(qwidget) )
+			if ( auto* window = qobject_cast<MainWindow*>(qwidget) )
 			{
 				window->close();
 			}

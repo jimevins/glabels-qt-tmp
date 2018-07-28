@@ -48,7 +48,7 @@ namespace glabels
 		/////////////////////////////////
 		// Accessors
 		/////////////////////////////////
-		const Template* tmplate() const;
+		const model::Template* tmplate() const;
 
 
 		/////////////////////////////////
@@ -57,7 +57,6 @@ namespace glabels
 	private slots:
 		void onModeTabChanged();
 		void onSearchEntryTextChanged();
-		void onSearchClearButtonClicked();
 		void onPageSizeCheckClicked();
 		void onCategoryRadioClicked();
 		void onCategoryCheckClicked();
@@ -86,6 +85,7 @@ namespace glabels
 		QBasicTimer mTimer;
 
 		QMap<QCheckBox*,QString> mCheckToCategoryMap;
+		QList<QCheckBox*>        mCheckList;
 		QStringList              mCategoryIdList;
 
 		bool mCanceled;

@@ -28,12 +28,6 @@
 #include "TypeIdList.h"
 
 
-/**
- * Barcode factory base for CAPI
- */
-extern "C" struct gbcFactory {};
-
-
 namespace glbarcode
 {
 	/**
@@ -41,14 +35,14 @@ namespace glbarcode
 	 *
 	 * Singleton Barcode factory class.
 	 */
-	class Factory : public gbcFactory
+	class Factory
 	{
 
 	public:
 		/**
 		 * Barcode creation function signature.
 		 */
-		typedef Barcode* (*BarcodeCreateFct)();
+		using BarcodeCreateFct = Barcode* (*)();
 
 
 	private:
@@ -113,7 +107,7 @@ namespace glbarcode
 		/**
 		 * Map barcode type strings to creation functions.
 		 */
-		typedef std::map<std::string,BarcodeCreateFct> BarcodeTypeMap;
+		using BarcodeTypeMap = std::map<std::string,BarcodeCreateFct>;
 		static BarcodeTypeMap mBarcodeTypeMap;
 
 

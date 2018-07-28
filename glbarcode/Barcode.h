@@ -27,12 +27,6 @@
 #include "Renderer.h"
 
 
-/**
- * Barcode base for CAPI
- */
-extern "C" struct gbcBarcode {};
-
-
 namespace glbarcode
 {
 
@@ -47,7 +41,7 @@ namespace glbarcode
 	 * See Barcode1dBase or Barcode2dBase.
 	 *
 	 */
-	class Barcode : public gbcBarcode
+	class Barcode
 	{
 
 	protected:
@@ -63,6 +57,11 @@ namespace glbarcode
 		 */
 		virtual ~Barcode();
 
+		/*
+		 * Non-copyable
+		 */
+		Barcode( const Barcode & ) = delete;
+		void operator=( const Barcode & ) = delete;
 
 		/**
 		 * Set accessor for "showText" property.

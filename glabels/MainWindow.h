@@ -21,6 +21,7 @@
 #ifndef MainWindow_h
 #define MainWindow_h
 
+#include <model/Model.h>
 
 #include <QAction>
 #include <QCloseEvent>
@@ -39,7 +40,6 @@ namespace glabels
 
 	// Forward References
 	class LabelEditor;
-	class LabelModel;
 	class MergeView;
 	class ObjectEditor;
 	class PrintView;
@@ -68,8 +68,8 @@ namespace glabels
 		// Public Methods
 		/////////////////////////////////////
 	public:
-		LabelModel* model() const;
-		void setModel( LabelModel* label );
+		model::Model* model() const;
+		void setModel( model::Model* model );
 		bool isEmpty() const;
 
 
@@ -92,6 +92,10 @@ namespace glabels
 		void fileOpen();
 		void fileSave();
 		void fileSaveAs();
+		void fileShowEditorPage();
+		void fileShowPropertiesPage();
+		void fileShowMergePage();
+		void fileShowPrintPage();
 		void fileTemplateDesigner();
 		void fileClose();
 		void fileExit();
@@ -209,7 +213,7 @@ namespace glabels
 		QToolBar* fileToolBar;
 		QToolBar* editorToolBar;
 
-		LabelModel*          mModel;
+		model::Model*        mModel;
 		UndoRedoModel*       mUndoRedoModel;
 
 		QListWidget*         mContents;
@@ -235,6 +239,10 @@ namespace glabels
 		QAction*  fileOpenAction;
 		QAction*  fileSaveAction;
 		QAction*  fileSaveAsAction;
+		QAction*  fileShowEditorPageAction;
+		QAction*  fileShowPropertiesPageAction;
+		QAction*  fileShowMergePageAction;
+		QAction*  fileShowPrintPageAction;
 		QAction*  fileTemplateDesignerAction;
 		QAction*  fileCloseAction;
 		QAction*  fileExitAction;

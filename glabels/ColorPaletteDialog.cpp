@@ -37,45 +37,45 @@ namespace glabels
 	//
 	ColorPaletteDialog::ColorTableEntry ColorPaletteDialog::mColorTable[] = {
 
-		{ "#ef2929", tr("Light Scarlet Red", "Color name") },
-		{ "#fcaf3e", tr("Light Orange", "Color name")      },
-		{ "#fce94f", tr("Light Butter", "Color name")      },
-		{ "#8ae234", tr("Light Chameleon", "Color name")   },
-		{ "#729fcf", tr("Light Sky Blue", "Color name")    },
-		{ "#ad7fa8", tr("Light Plum", "Color name")        },
-		{ "#e9b96e", tr("Light Chocolate", "Color name")   },
-		{ "#888a85", tr("Light Aluminum 1", "Color name")  },
-		{ "#eeeeec", tr("Light Aluminum 2", "Color name")  },
+		{ "#ef2929", QT_TRANSLATE_NOOP("Color name", "Light Scarlet Red") },
+		{ "#fcaf3e", QT_TRANSLATE_NOOP("Color name", "Light Orange")      },
+		{ "#fce94f", QT_TRANSLATE_NOOP("Color name", "Light Butter")      },
+		{ "#8ae234", QT_TRANSLATE_NOOP("Color name", "Light Chameleon")   },
+		{ "#729fcf", QT_TRANSLATE_NOOP("Color name", "Light Sky Blue")    },
+		{ "#ad7fa8", QT_TRANSLATE_NOOP("Color name", "Light Plum")        },
+		{ "#e9b96e", QT_TRANSLATE_NOOP("Color name", "Light Chocolate")   },
+		{ "#888a85", QT_TRANSLATE_NOOP("Color name", "Light Aluminum 1")  },
+		{ "#eeeeec", QT_TRANSLATE_NOOP("Color name", "Light Aluminum 2")  },
 
-		{ "#cc0000", tr("Scarlet Red", "Color name")       },
-		{ "#f57900", tr("Orange", "Color name")            },
-		{ "#edd400", tr("Butter", "Color name")            },
-		{ "#73d216", tr("Chameleon", "Color name")         },
-		{ "#3465a4", tr("Sky Blue", "Color name")          },
-		{ "#75507b", tr("Plum", "Color name")              },
-		{ "#c17d11", tr("Chocolate", "Color name")         },
-		{ "#555753", tr("Aluminum 1", "Color name")        },
-		{ "#d3d7cf", tr("Aluminum 2", "Color name")        },
+		{ "#cc0000", QT_TRANSLATE_NOOP("Color name", "Scarlet Red")       },
+		{ "#f57900", QT_TRANSLATE_NOOP("Color name", "Orange")            },
+		{ "#edd400", QT_TRANSLATE_NOOP("Color name", "Butter")            },
+		{ "#73d216", QT_TRANSLATE_NOOP("Color name", "Chameleon")         },
+		{ "#3465a4", QT_TRANSLATE_NOOP("Color name", "Sky Blue")          },
+		{ "#75507b", QT_TRANSLATE_NOOP("Color name", "Plum")              },
+		{ "#c17d11", QT_TRANSLATE_NOOP("Color name", "Chocolate")         },
+		{ "#555753", QT_TRANSLATE_NOOP("Color name", "Aluminum 1")        },
+		{ "#d3d7cf", QT_TRANSLATE_NOOP("Color name", "Aluminum 2")        },
 
-		{ "#a40000", tr("Dark Scarlet Red", "Color name")  },
-		{ "#ce5c00", tr("Dark Orange", "Color name")       },
-		{ "#c4a000", tr("Dark Butter", "Color name")       },
-		{ "#4e9a06", tr("Dark Chameleon", "Color name")    },
-		{ "#204a87", tr("Dark Sky Blue", "Color name")     },
-		{ "#5c3566", tr("Dark Plum", "Color name")         },
-		{ "#8f5902", tr("Dark Chocolate", "Color name")    },
-		{ "#2e3436", tr("Dark Aluminum 1", "Color name")   },
-		{ "#babdb6", tr("Dark Aluminum 2", "Color name")   },
+		{ "#a40000", QT_TRANSLATE_NOOP("Color name", "Dark Scarlet Red")  },
+		{ "#ce5c00", QT_TRANSLATE_NOOP("Color name", "Dark Orange")       },
+		{ "#c4a000", QT_TRANSLATE_NOOP("Color name", "Dark Butter")       },
+		{ "#4e9a06", QT_TRANSLATE_NOOP("Color name", "Dark Chameleon")    },
+		{ "#204a87", QT_TRANSLATE_NOOP("Color name", "Dark Sky Blue")     },
+		{ "#5c3566", QT_TRANSLATE_NOOP("Color name", "Dark Plum")         },
+		{ "#8f5902", QT_TRANSLATE_NOOP("Color name", "Dark Chocolate")    },
+		{ "#2e3436", QT_TRANSLATE_NOOP("Color name", "Dark Aluminum 1")   },
+		{ "#babdb6", QT_TRANSLATE_NOOP("Color name", "Dark Aluminum 2")   },
 
-		{ "#000000", tr("Black", "Color name")             },
-		{ "#2e3436", tr("Very Dark Gray", "Color name")    },
-		{ "#555753", tr("Darker Gray", "Color name")       },
-		{ "#888a85", tr("Dark Gray", "Color name")         },
-		{ "#babdb6", tr("Medium Gray", "Color name")       },
-		{ "#d3d7cf", tr("Light Gray", "Color name")        },
-		{ "#eeeeec", tr("Lighter Gray", "Color name")      },
-		{ "#f3f3f3", tr("Very Light Gray", "Color name")   },
-		{ "#ffffff", tr("White", "Color name")             }
+		{ "#000000", QT_TRANSLATE_NOOP("Color name", "Black")             },
+		{ "#2e3436", QT_TRANSLATE_NOOP("Color name", "Very Dark Gray")    },
+		{ "#555753", QT_TRANSLATE_NOOP("Color name", "Darker Gray")       },
+		{ "#888a85", QT_TRANSLATE_NOOP("Color name", "Dark Gray")         },
+		{ "#babdb6", QT_TRANSLATE_NOOP("Color name", "Medium Gray")       },
+		{ "#d3d7cf", QT_TRANSLATE_NOOP("Color name", "Light Gray")        },
+		{ "#eeeeec", QT_TRANSLATE_NOOP("Color name", "Lighter Gray")      },
+		{ "#f3f3f3", QT_TRANSLATE_NOOP("Color name", "Very Light Gray")   },
+		{ "#ffffff", QT_TRANSLATE_NOOP("Color name", "White")             }
 
 	};
 
@@ -90,16 +90,16 @@ namespace glabels
 		connect( mColorHistory, SIGNAL(changed()), this, SLOT(onColorHistoryChanged()) );
 
 		mDefaultColor = defaultColor;
-		mColorNode = ColorNode( color );
+		mColorNode = model::ColorNode( color );
 
 		setStyleSheet( ".glabels--ColorPaletteDialog {background: white; border: 1px solid black}" );
 		setWindowFlags( Qt::Popup | Qt::FramelessWindowHint );
 
-		QVBoxLayout* vLayout = new QVBoxLayout();
+		auto* vLayout = new QVBoxLayout();
 		vLayout->setContentsMargins( 0, 0, 0, 0 );
 		vLayout->setSpacing( 0 );
 
-		ColorPaletteButtonItem* defaultButton = new ColorPaletteButtonItem( defaultLabel );
+		auto* defaultButton = new ColorPaletteButtonItem( defaultLabel );
 		connect( defaultButton, SIGNAL(activated()), this, SLOT(onDefaultItemActivated()) );
 		vLayout->addWidget( defaultButton );
 		
@@ -108,7 +108,7 @@ namespace glabels
 		hline1->setLineWidth( 1 );
 		vLayout->addWidget( hline1 );
 
-		QGridLayout* mainPaletteLayout = new QGridLayout();
+		auto* mainPaletteLayout = new QGridLayout();
 		mainPaletteLayout->setSpacing( 0 );
 		for ( int iRow = 0; iRow < PALETTE_ROWS; iRow++ )
 		{
@@ -118,7 +118,7 @@ namespace glabels
 
 				ColorPaletteItem* item = new ColorPaletteItem( i,
 				                                               QColor( mColorTable[i].colorSpec ),
-				                                               mColorTable[i].name );
+				                                               tr(mColorTable[i].trname) );
 				connect( item, SIGNAL(activated(int)), this, SLOT(onPaletteItemActivated(int)) );
 
 				mainPaletteLayout->addWidget( item, iRow, iCol );
@@ -131,7 +131,7 @@ namespace glabels
 		hline2->setLineWidth( 1 );
 		vLayout->addWidget( hline2 );
 
-		QHBoxLayout* customPaletteLayout = new QHBoxLayout();
+		auto* customPaletteLayout = new QHBoxLayout();
 		customPaletteLayout->setSpacing( 0 );
 		for ( int iCol = 0; iCol < PALETTE_COLS; iCol++ )
 		{
@@ -167,7 +167,7 @@ namespace glabels
 		vLayout->addWidget( mMergeFieldCombo );
 
 		// Item 0 is the ComboBox title, not an item intended for selection. So disable it.
-		const QStandardItemModel* model = qobject_cast<const QStandardItemModel*>(mMergeFieldCombo->model());
+		const auto* model = qobject_cast<const QStandardItemModel*>(mMergeFieldCombo->model());
 		QStandardItem* item = model->item(0);
 		item->setFlags( item->flags() & ~(Qt::ItemIsSelectable|Qt::ItemIsEnabled) );
 	
@@ -177,7 +177,7 @@ namespace glabels
 	}
 
 
-	void ColorPaletteDialog::setColorNode( const ColorNode& colorNode )
+	void ColorPaletteDialog::setColorNode( const model::ColorNode& colorNode )
 	{
 		mColorNode = colorNode;
 	}
@@ -242,7 +242,7 @@ namespace glabels
 	void ColorPaletteDialog::onHistoryItemActivated( int id )
 	{
 		mColorNode.setField( false );
-		mColorNode.setColor( mColorHistory->getColors()[id] );
+		mColorNode.setColor( mColorHistory->getColor(id) );
 		mColorNode.setKey( "" );
 
 		emit colorChanged( mColorNode, false );
@@ -257,7 +257,7 @@ namespace glabels
 
 		if ( dlg.exec() )
 		{
-			ColorNode newColorNode;
+			model::ColorNode newColorNode;
 
 			newColorNode.setField( false );
 			newColorNode.setColor( dlg.currentColor() );
@@ -307,7 +307,7 @@ namespace glabels
 		if ( index != 0 )
 		{
 			mColorNode.setField( true );
-			mColorNode.setColor( QColor("#eeeeec") );
+			mColorNode.setColor( QColor( 0xee, 0xee, 0xec ) );
 			mColorNode.setKey( mKeys[index-1] );
 
 			emit colorChanged( mColorNode, false );

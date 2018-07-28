@@ -20,9 +20,7 @@
 
 #include "MergeView.h"
 
-#include "LabelModel.h"
-
-#include "Merge/Factory.h"
+#include "merge/Factory.h"
 
 #include <QFileDialog>
 #include <QFileInfo>
@@ -36,7 +34,7 @@ namespace glabels
 	/// Constructor
 	///
 	MergeView::MergeView( QWidget *parent )
-		: QWidget(parent), mModel(nullptr), mBlock(false)
+		: QWidget(parent), mModel(nullptr), mUndoRedoModel(nullptr), mBlock(false), mOldFormatComboIndex(0)
 	{
 		setupUi( this );
 
@@ -59,7 +57,7 @@ namespace glabels
 	///
 	/// Set Model
 	///
-	void MergeView::setModel( LabelModel* model, UndoRedoModel* undoRedoModel )
+	void MergeView::setModel( model::Model* model, UndoRedoModel* undoRedoModel )
 	{
 		mModel = model;
 		mUndoRedoModel = undoRedoModel;
@@ -248,7 +246,7 @@ namespace glabels
 			recordsTable->setColumnCount( mKeys.size() + 1 );  // Include extra column
 
 			// First column = primay Key
-			QTableWidgetItem* item = new QTableWidgetItem( mPrimaryKey );
+			auto* item = new QTableWidgetItem( mPrimaryKey );
 			item->setFlags( Qt::ItemIsEnabled );
 			recordsTable->setHorizontalHeaderItem( 0, item );
 
@@ -258,7 +256,7 @@ namespace glabels
 			{
 				if ( key != mPrimaryKey )
 				{
-					QTableWidgetItem* item = new QTableWidgetItem( key );
+					auto* item = new QTableWidgetItem( key );
 					item->setFlags( Qt::ItemIsEnabled );
 					recordsTable->setHorizontalHeaderItem( iCol, item );
 
@@ -268,7 +266,7 @@ namespace glabels
 			}
 
 			// Extra dummy column to fill any extra horizontal space
-			QTableWidgetItem* fillItem = new QTableWidgetItem();
+			auto* fillItem = new QTableWidgetItem();
 			fillItem->setFlags( Qt::NoItemFlags );
 			recordsTable->setHorizontalHeaderItem( iCol, fillItem );
 			recordsTable->horizontalHeader()->setStretchLastSection( true );
@@ -290,7 +288,7 @@ namespace glabels
 		foreach ( merge::Record* record, records )
 		{
 			// First column for primay field
-			QTableWidgetItem* item = new QTableWidgetItem();
+			auto* item = new QTableWidgetItem();
 			if ( record->contains( mPrimaryKey ) )
 			{
 				item->setText( (*record)[mPrimaryKey] );
@@ -308,7 +306,7 @@ namespace glabels
 				{
 					if ( record->contains( key ) )
 					{
-						QTableWidgetItem* item = new QTableWidgetItem( (*record)[key] );
+						auto* item = new QTableWidgetItem( (*record)[key] );
 						item->setFlags( Qt::ItemIsEnabled );
 						recordsTable->setItem( iRow, iCol, item );
 						recordsTable->resizeColumnToContents( iCol );
@@ -319,7 +317,7 @@ namespace glabels
 			}
 
 			// Extra dummy column to fill any extra horizontal space
-			QTableWidgetItem* fillItem = new QTableWidgetItem();
+			auto* fillItem = new QTableWidgetItem();
 			fillItem->setFlags( Qt::NoItemFlags );
 			recordsTable->setItem( iRow, iCol, fillItem );
 

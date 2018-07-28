@@ -114,9 +114,9 @@ namespace glbarcode
 	 */
 	bool BarcodeCode39::validate( const std::string& rawData )
 	{
-		for ( unsigned int i = 0; i < rawData.size(); i++ )
+		for (char r : rawData)
 		{
-			char c = toupper( rawData[i] );
+			char c = toupper( r );
 
 			if ( alphabet.find(c) == std::string::npos )
 			{
@@ -140,14 +140,14 @@ namespace glbarcode
 		code += "i";
 
 		int sum = 0;
-		for ( unsigned int i=0; i < cookedData.size(); i++ )
+		for (char c : cookedData)
 		{
-			int cValue = alphabet.find( toupper( cookedData[i] ) );
+			size_t cValue = alphabet.find( toupper( c ) );
 
 			code += symbols[cValue];
 			code += "i";
 
-			sum += cValue;
+			sum += int(cValue);
 		}
 
 		if ( checksum() )
@@ -170,9 +170,9 @@ namespace glbarcode
 	{
 		std::string displayText;
 
-		for ( unsigned int i = 0; i < rawData.size(); i++ )
+		for (char c : rawData)
 		{
-			displayText += toupper( rawData[i] );
+			displayText += toupper( c );
 		}
 
 		return displayText;
@@ -190,7 +190,7 @@ namespace glbarcode
 	{
 
 		/* determine width and establish horizontal scale, based on original cooked data */
-		double dataSize = cookedData.size();
+		auto dataSize = double( cookedData.size() );
 		double minL;
 		if ( !checksum() )
 		{
@@ -230,11 +230,11 @@ namespace glbarcode
 
 		/* Now traverse the code string and draw each bar */
 		double x1 = xQuiet;
-		for ( unsigned int i=0; i < codedData.size(); i++ )
+		for (char c : codedData)
 		{
 			double lwidth;
 				
-			switch ( codedData[i] )
+			switch ( c )
 			{
 
 			case 'i':

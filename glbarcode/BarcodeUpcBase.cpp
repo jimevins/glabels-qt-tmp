@@ -61,7 +61,7 @@ namespace
 	/*
 	 * Parity selection
 	 */
-	typedef enum { P_ODD, P_EVEN } Parity;
+	enum Parity { P_ODD, P_EVEN };
 
 	const Parity parity[10][6] = {
 		/*                Pos 1,  Pos 2,  Pos 3,  Pos 4,  Pos 5,  Pos 6 */
@@ -99,13 +99,13 @@ namespace glbarcode
 	{
 		int nDigits = 0;
 
-		for ( unsigned int i = 0; i < rawData.size(); i++ )
+		for (char c : rawData)
 		{
-			if ( isdigit( rawData[i] ) )
+			if ( isdigit( c ) )
 			{
 				nDigits++;
 			}
-			else if ( rawData[i] != ' ')
+			else if ( c != ' ')
 			{
 				/* Only allow digits and spaces -- ignoring spaces. */
 				return false;
@@ -192,11 +192,11 @@ namespace glbarcode
 	{
 		std::string displayText;
 
-		for ( unsigned int i = 0; i < rawData.size(); i++ )
+		for (char c : rawData)
 		{
-			if ( isdigit( rawData[i] ) )
+			if ( isdigit( c ) )
 			{
-				displayText += rawData[i];
+				displayText += c;
 			}
 		}
 
@@ -216,7 +216,7 @@ namespace glbarcode
 					double&            h )
 	{
 		/* determine width and establish horizontal scale */
-		int nModules     = 7*(cookedData.size()+1) + 11;
+		int nModules     = 7*int(cookedData.size()+1) + 11;
 
 		double scale;
 		if ( w == 0 )
@@ -256,7 +256,7 @@ namespace glbarcode
 
 
 		/* now traverse the code string and draw each bar */
-		int nBarsSpaces = codedData.size() - 1; /* coded data has dummy "0" on end. */
+		auto nBarsSpaces = int( codedData.size() - 1 ); /* coded data has dummy "0" on end. */
 
 		double xModules = 0;
 		for ( int i = 0; i < nBarsSpaces; i += 2 )

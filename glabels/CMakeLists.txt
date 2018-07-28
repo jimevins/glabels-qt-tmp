@@ -1,133 +1,47 @@
-#=======================================
-# Compilation
-#=======================================
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-add_compile_options (-std=c++11 -g)
-if (NOT WIN32)
-   add_compile_options (-fPIC)
-endif ()
-
-# Uncomment to build with pedantic flags
-#add_compile_options (-Werror -Wall -Wpedantic)
-#add_definitions (-DQT_DISABLE_DEPRECATED_BEFORE=0x050400)
-
-if (${GNUBARCODE_FOUND})
-  add_definitions (-DHAVE_GNU_BARCODE=1)
-else (${GNUBARCODE_FOUND})
-  set (GNUBARCODE_INCLUDE_DIR "")
-  set (GNUBARCODE_LIBRARIES "")
-endif (${GNUBARCODE_FOUND})
-
-if (${LIBQRENCODE_FOUND})
-  add_definitions (-DHAVE_QRENCODE=1)
-else (${LIBQRENCODE_FOUND})
-  set (LIBQRENCODE_INCLUDE_DIR "")
-  set (LIBQRENCODE_LIBRARIES "")
-endif (${LIBQRENCODE_FOUND})
-
-if (${LIBZINT_FOUND})
-  add_definitions (-DHAVE_ZINT=1)
-else (${LIBZINT_FOUND})
-  set (LIBZINT_INCLUDE_DIR "")
-  set (LIBZINT_LIBRARIES "")
-endif (${LIBZINT_FOUND})
-
-
-#=======================================
-# Auto-generate Version.h
-#=======================================
-configure_file (Version.h.in ${CMAKE_CURRENT_BINARY_DIR}/Version.h @ONLY)
-configure_file (Config.h.in ${CMAKE_CURRENT_BINARY_DIR}/Config.h @ONLY)
-
+project (glabels LANGUAGES CXX)
 
 #=======================================
 # Sources
 #=======================================
 set (glabels_sources
-  glabels_main.cpp
+  main.cpp
   AboutDialog.cpp
-  BarcodeBackends.cpp
   BarcodeMenu.cpp
   BarcodeMenuButton.cpp
   BarcodeMenuItem.cpp
-  BarcodeStyle.cpp
-  Category.cpp
   ColorButton.cpp
   ColorHistory.cpp
-  ColorNode.cpp
   ColorPaletteDialog.cpp
   ColorPaletteItem.cpp
   ColorPaletteButtonItem.cpp
   ColorSwatch.cpp
   Cursors.cpp
-  DataCache.cpp
-  Db.cpp
-  Distance.cpp
   FieldButton.cpp
   File.cpp
-  FileUtil.cpp
-  Frame.cpp
-  FrameCd.cpp
-  FrameEllipse.cpp
-  FrameRect.cpp
-  FrameRound.cpp
-  Handles.cpp
   Help.cpp
   Icons.cpp
   LabelEditor.cpp
-  LabelModel.cpp
-  LabelModelObject.cpp
-  LabelModelBarcodeObject.cpp
-  LabelModelBoxObject.cpp
-  LabelModelEllipseObject.cpp
-  LabelModelImageObject.cpp
-  LabelModelLineObject.cpp
-  LabelModelShapeObject.cpp
-  LabelModelTextObject.cpp
-  Layout.cpp
   MainWindow.cpp
-  Markup.cpp
   MergeView.cpp
   MiniPreviewPixmap.cpp
+  NotebookUtil.cpp
   ObjectEditor.cpp
-  Outline.cpp
-  PageRenderer.cpp
-  Paper.cpp
-  Point.cpp
   PreferencesDialog.cpp
   PrintView.cpp
   PropertiesView.cpp
   Preview.cpp
   PreviewOverlayItem.cpp
-  RawText.cpp
-  Region.cpp
   SelectProductDialog.cpp
-  Settings.cpp
   SimplePreview.cpp
-  Size.cpp
   StartupView.cpp
-  StrUtil.cpp
-  Template.cpp
+  TemplateDesigner.cpp
   TemplatePicker.cpp
   TemplatePickerItem.cpp
-  TextNode.cpp
   UndoRedoModel.cpp
-  Units.cpp
-  Vendor.cpp
-  XmlCategoryParser.cpp
-  XmlLabelCreator.cpp
-  XmlLabelParser.cpp
-  XmlPaperParser.cpp
-  XmlTemplateCreator.cpp
-  XmlTemplateParser.cpp
-  XmlUtil.cpp
-  XmlVendorParser.cpp
 )
 
 set (glabels_qobject_headers
   AboutDialog.h
-  BarcodeBackends.h
   BarcodeMenu.h
   BarcodeMenuButton.h
   BarcodeMenuItem.h
@@ -139,27 +53,17 @@ set (glabels_qobject_headers
   FieldButton.h
   File.h
   LabelEditor.h
-  LabelModel.h
-  LabelModelObject.h
-  LabelModelBarcodeObject.h
-  LabelModelBoxObject.h
-  LabelModelEllipseObject.h
-  LabelModelImageObject.h
-  LabelModelLineObject.h
-  LabelModelShapeObject.h
-  LabelModelTextObject.h
   MainWindow.h
   MergeView.h
   ObjectEditor.h
-  PageRenderer.h
   PreferencesDialog.h
   PrintView.h
   PropertiesView.h
   Preview.h
   SelectProductDialog.h
-  Settings.h
   SimplePreview.h
   StartupView.h
+  TemplateDesigner.h
   TemplatePicker.h
   UndoRedoModel.h
 )
@@ -173,6 +77,18 @@ set (glabels_forms
   ui/PropertiesView.ui
   ui/SelectProductDialog.ui
   ui/StartupView.ui
+  ui/TemplateDesignerIntroPage.ui
+  ui/TemplateDesignerNamePage.ui
+  ui/TemplateDesignerPageSizePage.ui
+  ui/TemplateDesignerShapePage.ui
+  ui/TemplateDesignerRectPage.ui
+  ui/TemplateDesignerRoundPage.ui
+  ui/TemplateDesignerEllipsePage.ui
+  ui/TemplateDesignerCdPage.ui
+  ui/TemplateDesignerNLayoutsPage.ui
+  ui/TemplateDesignerOneLayoutPage.ui
+  ui/TemplateDesignerTwoLayoutPage.ui
+  ui/TemplateDesignerApplyPage.ui
 )
 
 set (glabels_resource_files
@@ -190,6 +106,9 @@ if (WIN32)
   set (glabels_win_rc glabels.rc)
 endif ()
 
+#=====================================
+# Target
+#=====================================
 add_executable (glabels-qt WIN32
   ${glabels_sources}
   ${glabels_moc_sources}
@@ -198,46 +117,19 @@ add_executable (glabels-qt WIN32
   ${glabels_win_rc}
 )
 
+#target_compile_features (glabels-qt
+#  PUBLIC cxx_std_11
+#)
+set_property (TARGET glabels-qt PROPERTY CXX_STANDARD 11)
+
+target_include_directories (glabels-qt
+  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}
+)
+
 target_link_libraries (glabels-qt
-  Barcode
-  Merge
-  glbarcode
-  ${Qt5Widgets_LIBRARIES}
-  ${Qt5PrintSupport_LIBRARIES}
-  ${Qt5Xml_LIBRARIES}
-  ${Qt5Svg_LIBRARIES}
-  ${ZLIB_LIBRARIES}
-  ${GNUBARCODE_LIBRARIES}
-  ${LIBQRENCODE_LIBRARIES}
-  ${LIBZINT_LIBRARIES}
+  Model
+  Qt5::Widgets
 )
-
-
-#=======================================
-# Where to find stuff
-#=======================================
-include_directories (
-  ${glabels_SOURCE_DIR}
-  ${ZLIB_INCLUDE_DIRS}
-  ${Qt5Widgets_INCLUDE_DIRS}
-  ${Qt5PrintSupport_INCLUDE_DIRS}
-  ${Qt5Xml_INCLUDE_DIRS}
-  ${Qt5Svg_INCLUDE_DIRS}
-  ${GNUBARCODE_INCLUDE_DIR}
-  ${LIBQRENCODE_INCLUDE_DIR}
-  ${LIBZINT_INCLUDE_DIR}
-)
-
-link_directories (
-)
-
-
-#=======================================
-# Subdirectories
-#=======================================
-add_subdirectory (BarcodeBackends)
-add_subdirectory (Merge)
-
 
 #=======================================
 # Install
@@ -255,19 +147,67 @@ install (FILES icons/16x16/mimetypes/x-glabels-project.svg    DESTINATION share/
 install (FILES icons/22x22/mimetypes/x-glabels-project.svg    DESTINATION share/icons/hicolor/22x22/mimetypes)
 install (FILES icons/24x24/mimetypes/x-glabels-project.svg    DESTINATION share/icons/hicolor/24x24/mimetypes)
 
-if (MINGW)
-   # Install Windows runtime DLLs in application bin
-   set (runtime_dlls
-     ${MINGW_BIN_DIR}/libgcc_s_dw2-1.dll
-     ${MINGW_BIN_DIR}/libstdc++-6.dll
-     ${MINGW_BIN_DIR}/zlib1.dll
-     ${QT_BIN_DIR}/libwinpthread-1.dll
-     ${QT_BIN_DIR}/Qt5Core.dll
-     ${QT_BIN_DIR}/Qt5Gui.dll
-     ${QT_BIN_DIR}/Qt5PrintSupport.dll
-     ${QT_BIN_DIR}/Qt5Widgets.dll
-     ${QT_BIN_DIR}/Qt5Svg.dll
-     ${QT_BIN_DIR}/Qt5Xml.dll
-   )
-   install (FILES ${runtime_dlls} DESTINATION bin)
-endif ()
+#
+# Windows Runtime
+#
+if (WIN32)
+
+    find_program (WINDEPLOYQT_EXECUTABLE windeployqt HINTS "${QT_BIN_DIR}")
+
+    #
+    # Visual Studio toolchain
+    #
+    if (MSVC)
+        # Run windeployqt immediately after build
+        add_custom_command (TARGET glabels-qt POST_BUILD
+            COMMAND "${CMAKE_COMMAND}" -E
+                env PATH="${QT_BIN_DIR}" "${WINDEPLOYQT_EXECUTABLE}"
+                    --verbose 0
+                    --no-compiler-runtime
+                    --no-angle
+                    --no-opengl-sw
+                    \"$<TARGET_FILE:glabels-qt>\"
+        )
+
+      # Install files staged by windeployqt
+        install (DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>/ DESTINATION bin
+                 FILES_MATCHING PATTERN *.dll PATTERN *.qm)
+
+        # Install necessary system libraries
+        set (CMAKE_INSTALL_UCRT_LIBRARIES TRUE)
+        include (InstallRequiredSystemLibraries)
+    endif (MSVC)
+
+    #
+    # MSYS/MINGW toolchain
+    #
+    if (MINGW)
+        # Run windeployqt immediately after build
+        add_custom_command (TARGET glabels-qt POST_BUILD
+            COMMAND "${CMAKE_COMMAND}" -E
+                env PATH="${QT_BIN_DIR}" "${WINDEPLOYQT_EXECUTABLE}"
+                    --verbose 0
+                    --release
+                    --no-compiler-runtime
+                    --no-angle
+                    --no-opengl-sw
+                    \"$<TARGET_FILE:glabels-qt>\"
+        )
+
+        # Install files staged by windeployqt
+        install (DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>/ DESTINATION bin
+                 FILES_MATCHING PATTERN *.dll PATTERN *.qm)
+
+        # Install necessary system libraries
+        install (FILES
+            ${QT_BIN_DIR}/libgcc_s_dw2-1.dll
+            ${QT_BIN_DIR}/libstdc++-6.dll
+            ${QT_BIN_DIR}/libwinpthread-1.dll
+            DESTINATION bin
+        )
+        if (ZLIB_FOUND)
+          install (FILES ${MINGW_BIN_DIR}/zlib1.dll DESTINATION bin)
+        endif ()
+    endif (MINGW)
+
+endif (WIN32)
