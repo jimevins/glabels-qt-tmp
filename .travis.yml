@@ -12,8 +12,8 @@ matrix:
     os: osx
 
 install:
-  - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then sudo apt install qtbase5-dev libqt5svg5-dev qttools5-dev ; fi
-  - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then sudo apt install zlib1g-dev ; fi
+  - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then sudo apt-get -y install qtbase5-dev libqt5svg5-dev qttools5-dev ; fi
+  - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then sudo apt-get -y install zlib1g-dev ; fi
 
 script:
   - git fetch --unshallow # restore repository depth to properly count commits in auto versioning
