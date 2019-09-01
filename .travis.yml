@@ -2,6 +2,7 @@ language: cpp
 
 matrix:
   include:
+
   #####################
   #
   # Linux build
@@ -18,15 +19,30 @@ matrix:
       - sudo apt-get -y install pkgconf libqrencode-dev
       - sudo apt-get -y install barcode
 
-    script:
+    before_script:
       - git fetch --unshallow # restore repository depth to properly count commits in auto versioning
       - git checkout master   # re-attach to master to satisfy auto versioning
+
+    script:
       - mkdir build
       - cd build
       - cmake .. -DCMAKE_INSTALL_PREFIX=/usr
       - make -j4
       - xvfb-run ctest
+      - VERSION=$(cat VERSION)
+
+    after_success:
+      #
+      # Create AppImage
+      #
       - sudo make DESTDIR=appdir install ; sudo chown -R $USER appdir ; find appdir/
+      - wget -c "https://github.com/jimevins/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
+      - chmod a+x linuxdeployqt*.AppImage
+      - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
+      - export LD_LIBRARY_PATH=/opt/qt*/lib/:/usr/local/lib:$LD_LIBRARY_PATH
+      - ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -bundle-non-qt-libs
+      - ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -appimage
+      - find ./appdir -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
 
   #####################
   #
@@ -36,14 +52,22 @@ matrix:
   - name: "Windows"
     os: windows
 
-    script:
+    before_script:
       - git fetch --unshallow # restore repository depth to properly count commits in auto versioning
       - git checkout master   # re-attach to master to satisfy auto versioning
+
+    script:
       - mkdir build
       - cd build
       #- cmake .. -G "Visual Studio 15 2017 Win64"
       #- cmake --build . --config Release
       #- ctest -C Release
+      #- VERSION=$(cat VERSION)
+
+    after_success:
+      #
+      # Create Windows Installer
+      #
       #- cpack -C Release -G NSIS64
 
   #####################
@@ -57,11 +81,14 @@ matrix:
     install:
       - brew install qt
 
-    script:
+    before_script:
       - git fetch --unshallow # restore repository depth to properly count commits in auto versioning
       - git checkout master   # re-attach to master to satisfy auto versioning
+
+    script:
       - mkdir build
       - cd build
       - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/opt/qt
       - make -j4
-      - ctest --verbose
+      #- ctest --verbose
+      - VERSION=$(cat VERSION)
