@@ -4,7 +4,7 @@ matrix:
   include:
   - name: "Linux"
     os: linux
-    dist: xenial
+    dist: bionic
     sudo: require
   - name: "Windows"
     os: windows
