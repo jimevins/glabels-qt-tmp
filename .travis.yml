@@ -19,10 +19,22 @@ install:
   - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then sudo apt-get -y install zlib1g-dev ; fi
   - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then sudo apt-get -y install pkgconf libqrencode-dev ; fi
   - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then sudo apt-get -y install barcode ; fi
+  - #
+  - # MacOS dependencies
+  - #
+  - if [[ "$TRAVIS_JOB_NAME" == "MacOS" ]]; then brew install qt ; fi
+
 
 script:
   - git fetch --unshallow # restore repository depth to properly count commits in auto versioning
   - git checkout master   # re-attach to master to satisfy auto versioning
   - mkdir build
   - cd build
+  - #
+  - # Linux build
+  - #
   - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then cmake .. -DCMAKE_INSTALL_PREFIX=/usr ; fi
+  - #
+  - # MacOS build
+  - #
+  - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then cmake .. -DCMAKE_PREFIX_PATH=/usr/local/opt/qt ; fi
