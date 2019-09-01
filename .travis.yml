@@ -37,4 +37,4 @@ script:
   - #
   - # MacOS build
   - #
-  - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then cmake .. -DCMAKE_PREFIX_PATH=/usr/local/opt/qt ; fi
+  - if [[ "$TRAVIS_JOB_NAME" == "MacOS" ]]; then cmake .. -DCMAKE_PREFIX_PATH=/usr/local/opt/qt ; fi
