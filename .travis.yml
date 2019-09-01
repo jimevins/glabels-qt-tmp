@@ -3,14 +3,22 @@ language: cpp
 matrix:
   include:
   - name: "Linux"
+    os: linux
     dist: xenial
+    env: CMAKE_GENERATOR="Unix Makefiles"
   - name: "Windows"
     os: windows
+    env: CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
   - name: "MacOS"
     os: osx
+    env: CMAKE_GENERATOR="Unix Makefiles"
 
 script:
   - git fetch --unshallow # restore repository depth to properly count commits in auto versioning
   - git checkout master   # re-attach to master to satisfy auto versioning
   - mkdir build
   - cd build
+  - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]
+    then
+      cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+    fi
