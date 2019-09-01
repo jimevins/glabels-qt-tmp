@@ -18,7 +18,4 @@ script:
   - git checkout master   # re-attach to master to satisfy auto versioning
   - mkdir build
   - cd build
-  - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]
-  - then
-  -   cmake .. -DCMAKE_INSTALL_PREFIX=/usr
-  - fi
+  - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then cmake .. -DCMAKE_INSTALL_PREFIX=/usr ; fi
