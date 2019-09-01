@@ -1,9 +1,13 @@
 language: cpp
 
+# blocklist
 branches:
   except:
     - /.*/
     - /^glabels-.*$/ # Do not build tags that we create when we upload to GitHub Releases
+
+# safelist
+branches:
   only:
     - master
 
