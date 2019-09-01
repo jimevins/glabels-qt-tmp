@@ -43,19 +43,29 @@ matrix:
       - VERSION=$(cat VERSION)
 
     after_success:
+      # Download AppImage QT deployment tool (local snapshot -- original at github/probono)
+      - wget -c "https://github.com/jimevins/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
+      - chmod a+x linuxdeployqt*.AppImage
       #
       # Create AppImage
       #
-      - # Download AppImage QT deployment tool (local snapshot -- original at github/probono)
-      - wget -c "https://github.com/jimevins/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
-      - chmod a+x linuxdeployqt*.AppImage
-      - #
       - make DESTDIR=appdir install
       - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
       - export LD_LIBRARY_PATH=/opt/qt*/lib/:/usr/local/lib:$LD_LIBRARY_PATH
       - ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -bundle-non-qt-libs
       - ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -appimage
       - mv ./gLabels*.AppImage glabels-${VERSION}-x86_64.AppImage
+
+    before_deploy:
+      - git config --local user.name "Jim Evins (Travis CI)"
+      - git config --local user.email evins@snaught.com
+      - git tag glabels-${VERSION}
+
+    deploy:
+      provider: releases
+      api_key: ${GITHUB_KEY}
+      file: glabels-${VERSION}-x86_64.AppImage
+      skip_cleanup: true
 
   #####################
   #
