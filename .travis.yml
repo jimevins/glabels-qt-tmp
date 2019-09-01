@@ -19,6 +19,6 @@ script:
   - mkdir build
   - cd build
   - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]
-    then
-      cmake .. -DCMAKE_INSTALL_PREFIX=/usr
-    fi
+  - then
+  -   cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  - fi
