@@ -35,6 +35,10 @@ script:
   - #
   - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then cmake .. -DCMAKE_INSTALL_PREFIX=/usr ; fi
   - #
+  - # Windows build
+  - #
+  - if [[ "$TRAVIS_JOB_NAME" == "Windows" ]]; then cmake .. -G "Visual Studio 15 2017 Win64" ; fi
+  - #
   - # MacOS build
   - #
   - if [[ "$TRAVIS_JOB_NAME" == "MacOS" ]]; then cmake .. -DCMAKE_PREFIX_PATH=/usr/local/opt/qt ; fi
