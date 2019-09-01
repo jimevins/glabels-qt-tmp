@@ -1,0 +1,16 @@
+language: cpp
+
+matrix:
+  include:
+  - name: "Linux"
+    dist: xenial
+  - name: "Windows"
+    os: windows
+  - name: "MacOS"
+    os: osx
+
+script:
+  - git fetch --unshallow # restore repository depth to properly count commits in auto versioning
+  - git checkout master   # re-attach to master to satisfy auto versioning
+  - mkdir build
+  - cd build
