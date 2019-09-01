@@ -38,6 +38,7 @@ script:
   - # Windows build
   - #
   - if [[ "$TRAVIS_JOB_NAME" == "Windows" ]]; then cmake .. -G "Visual Studio 15 2017 Win64" ; fi
+  - if [[ "$TRAVIS_JOB_NAME" == "Windows" ]]; then cat CMakeFiles/CMakeOutput.log ; fi
   - #
   - # MacOS build
   - #
