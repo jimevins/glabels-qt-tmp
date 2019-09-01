@@ -12,16 +12,16 @@ matrix:
     os: osx
 
 install:
-  - #
-  - # Linux dependencies
-  - #
+  #
+  # Linux dependencies
+  #
   - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then sudo apt-get -y install qtbase5-dev libqt5svg5-dev qttools5-dev ; fi
   - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then sudo apt-get -y install zlib1g-dev ; fi
   - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then sudo apt-get -y install pkgconf libqrencode-dev ; fi
   - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then sudo apt-get -y install barcode ; fi
-  - #
-  - # MacOS dependencies
-  - #
+  #
+  # MacOS dependencies
+  #
   - if [[ "$TRAVIS_JOB_NAME" == "MacOS" ]]; then brew install qt ; fi
 
 
@@ -30,16 +30,15 @@ script:
   - git checkout master   # re-attach to master to satisfy auto versioning
   - mkdir build
   - cd build
-  - #
-  - # Linux build
-  - #
+  #
+  # Linux build
+  #
   - if [[ "$TRAVIS_JOB_NAME" == "Linux" ]]; then cmake .. -DCMAKE_INSTALL_PREFIX=/usr ; fi
-  - #
-  - # Windows build
-  - #
-  - if [[ "$TRAVIS_JOB_NAME" == "Windows" ]]; then cmake .. -G "Visual Studio 15 2017 Win64" ; fi
-  - if [[ "$TRAVIS_JOB_NAME" == "Windows" ]]; then cat CMakeFiles/CMakeOutput.log ; fi
-  - #
-  - # MacOS build
-  - #
+  #
+  # Windows build
+  #
+  #- if [[ "$TRAVIS_JOB_NAME" == "Windows" ]]; then cmake .. -G "Visual Studio 15 2017 Win64" ; fi
+  #
+  # MacOS build
+  #
   - if [[ "$TRAVIS_JOB_NAME" == "MacOS" ]]; then cmake .. -DCMAKE_PREFIX_PATH=/usr/local/opt/qt ; fi
