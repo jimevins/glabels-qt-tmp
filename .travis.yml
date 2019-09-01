@@ -1,5 +1,12 @@
 language: cpp
 
+branches:
+  except:
+    - /.*/
+    - /^glabels-.*$/ # Do not build tags that we create when we upload to GitHub Releases
+  only:
+    - master
+
 matrix:
   include:
 
