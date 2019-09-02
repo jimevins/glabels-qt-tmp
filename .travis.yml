@@ -63,7 +63,7 @@ matrix:
 
     deploy:
       provider: releases
-      api_key: ${GITHUB_KEY}
+      api_key: ${GITHUB_TOKEN}
       file: glabels-${VERSION}-x86_64.AppImage
       skip_cleanup: true
 
