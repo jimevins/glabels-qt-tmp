@@ -22,6 +22,8 @@ matrix:
     os: linux
     dist: bionic
     sudo: require
+    env:
+      - QMAKE_PATH=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
     
     install:
       - sudo apt-get -y install qtbase5-dev libqt5svg5-dev qttools5-dev
@@ -50,8 +52,8 @@ matrix:
       #
       - make DESTDIR=appdir install
       - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
-      - ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -bundle-non-qt-libs -qmake=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
-      - ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -appimage -qmake=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
+      - ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -bundle-non-qt-libs
+      - ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -appimage
       - mv ./gLabels*.AppImage glabels-${VERSION}-x86_64.AppImage
 
     before_deploy:
