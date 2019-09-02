@@ -50,7 +50,6 @@ matrix:
       #
       - make DESTDIR=appdir install
       - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
-      - export LD_LIBRARY_PATH=/opt/qt*/lib/:/usr/local/lib:$LD_LIBRARY_PATH
       - ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -bundle-non-qt-libs
       - ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -appimage
       - mv ./gLabels*.AppImage glabels-${VERSION}-x86_64.AppImage
