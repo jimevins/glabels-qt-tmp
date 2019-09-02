@@ -23,16 +23,12 @@ matrix:
     os: linux
     dist: bionic
     sudo: require
-    addons:
-      apt:
-        packages:
-	  - qtbase5-dev
-	  - libqt5svg5-dev
-	  - qttools5-dev
-      	  - xvfb
-	  - pkgconf
-	  - libqrencode-dev
-	  - barcode
+    
+    install:
+      - sudo apt-get -y install qtbase5-dev libqt5svg5-dev qttools5-dev
+      - sudo apt-get -y install xvfb
+      - sudo apt-get -y install pkgconf libqrencode-dev
+      - sudo apt-get -y install barcode
 
     before_script:
       - git fetch --unshallow # restore repository depth to properly count commits in auto versioning
@@ -108,9 +104,10 @@ matrix:
   #####################
   - name: "MacOS"
     os: osx
-
-    install:
-      - brew install qt
+    addons:
+      homebrew:
+        packages:
+          - qt
 
     before_script:
       - git fetch --unshallow # restore repository depth to properly count commits in auto versioning
