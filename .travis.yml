@@ -64,8 +64,11 @@ matrix:
     deploy:
       provider: releases
       api_key: ${GITHUB_TOKEN}
-      file: glabels-${VERSION}-x86_64.AppImage
+      file:
+        - glabels-${VERSION}-x86_64.AppImage
+      draft: true
       skip_cleanup: true
+
 
   #####################
   #
@@ -92,6 +95,7 @@ matrix:
       # Create Windows Installer
       #
       #- cpack -C Release -G NSIS64
+
 
   #####################
   #
