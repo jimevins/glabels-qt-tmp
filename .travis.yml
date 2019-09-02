@@ -23,12 +23,16 @@ matrix:
     os: linux
     dist: bionic
     sudo: require
-    
-    install:
-      - sudo apt-get -y install qtbase5-dev libqt5svg5-dev qttools5-dev
-      - sudo apt-get -y install xvfb
-      - sudo apt-get -y install pkgconf libqrencode-dev
-      - sudo apt-get -y install barcode
+    addons:
+      apt:
+        packages:
+	  - qtbase5-dev
+	  - libqt5svg5-dev
+	  - qttools5-dev
+      	  - xvfb
+	  - pkgconf
+	  - libqrencode-dev
+	  - barcode
 
     before_script:
       - git fetch --unshallow # restore repository depth to properly count commits in auto versioning
@@ -66,7 +70,7 @@ matrix:
       api_key: ${GITHUB_TOKEN}
       file:
         - glabels-${VERSION}-x86_64.AppImage
-      draft: true
+      draft: false
       skip_cleanup: true
 
 
