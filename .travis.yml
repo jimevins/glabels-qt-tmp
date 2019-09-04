@@ -32,6 +32,7 @@ matrix:
       - sudo apt-get -y install barcode
       # Install zint from source
       - wget https://downloads.sourceforge.net/project/zint/zint/2.6.5/zint-2.6.5.tar.gz && tar xzf zint-2.6.5.tar.gz && ( cd zint-2.6.5 && mkdir build && cd build && cmake .. && make && sudo make install )
+      - export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
     before_script:
       - git fetch --unshallow # restore repository depth to properly count commits in auto versioning
@@ -54,7 +55,6 @@ matrix:
       #
       - make DESTDIR=appdir install
       - unset QTDIR; unset QT_PLUGIN_PATH
-      - export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
       - ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -bundle-non-qt-libs
       - ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -appimage
       - mv ./gLabels*.AppImage glabels-${VERSION}-x86_64.AppImage
