@@ -37,6 +37,8 @@ install:
   - dir backend
   - dir backend\Release
   - cd ../..
+  - set CMAKE_INCLUDE_PATH=%CD%/zint-2.6.5/backend
+  - set CMAKE_LIBRARY_PATH=%CD%/zint-2.6.5/build/backend/Release
   
 build_script:
   - git checkout master # re-attach to master to satisfy auto version tooling
