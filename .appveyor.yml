@@ -25,7 +25,7 @@ install:
   - set QTDIR=c:\Qt\5.11\msvc2017_64
   - set PATH=%PATH%;%QTDIR%/bin
   # Install zint from source
-  - curl https://downloads.sourceforge.net/project/zint/zint/2.6.5/zint-2.6.5.tar.gz -o zint-2.6.5.tar.gz
+  - curl -L https://downloads.sourceforge.net/project/zint/zint/2.6.5/zint-2.6.5.tar.gz -o zint-2.6.5.tar.gz
   - dir
   - 7z x zint-2.6.5.tar.gz
   - 7z x zint-2.6.5.tar
