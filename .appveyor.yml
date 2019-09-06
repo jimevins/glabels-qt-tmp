@@ -35,7 +35,7 @@ install:
   - cmake --build . --config Release --target zint
   - dir
   - dir backend
-  - dir backend/Release
+  - dir backend\Release
   - cd ../..
   
 build_script:
