@@ -29,7 +29,12 @@ install:
   - dir
   - 7z x zint-2.6.5.tar.gz
   - 7z x zint-2.6.5.tar
-  - ( cd zint-2.6.5 ; mkdir build ; cd build && cmake -G "Visual Studio 15 2017 Win64" .. ; cmake --build . --config Release )
+  - cd zint-2.6.5
+  - mkdir build
+  - cd build
+  - cmake -G "Visual Studio 15 2017 Win64" ..
+  - cmake --build . --config Release
+  - cd ../..
   
 build_script:
   - git checkout master # re-attach to master to satisfy auto version tooling
