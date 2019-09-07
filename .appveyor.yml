@@ -27,7 +27,7 @@ install:
   - set PATH=%PATH%;%QTDIR%\bin
   # Zlib and QREncode
   - vcpkg install zlib
-  - vcpkg install qrencode
+  - vcpkg install libqrencode
   - vcpkg integrate install
   
   # Install zint from source
