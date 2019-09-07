@@ -26,10 +26,10 @@ install:
   - set QTDIR=c:\Qt\5.11\msvc2017_64
   - set PATH=%PATH%;%QTDIR%\bin
   # ???
-  vcpkg search zlib
-  vcpkg search qrencode
-  vcpkg search barcode
-  vcpkg search zint
+  - vcpkg search zlib
+  - vcpkg search qrencode
+  - vcpkg search barcode
+  - vcpkg search zint
   
   # Install zint from source
   #- curl -L https://downloads.sourceforge.net/project/zint/zint/2.6.5/zint-2.6.5.tar.gz -o zint-2.6.5.tar.gz
