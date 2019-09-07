@@ -26,8 +26,8 @@ install:
   - set QTDIR=c:\Qt\5.11\msvc2017_64
   - set PATH=%PATH%;%QTDIR%\bin
   # Zlib and QREncode
-  - vcpkg install zlib
-  - vcpkg install libqrencode
+  - vcpkg install zlib:x64-windows
+  - vcpkg install libqrencode:x64-windows
   - vcpkg integrate install
   
   # Install zint from source
