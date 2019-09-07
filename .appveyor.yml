@@ -23,7 +23,7 @@ init:
 
 install:
   - set QTDIR=c:\Qt\5.11\msvc2017_64
-  - set PATH=%PATH%;%QTDIR%/bin
+  - set PATH=%PATH%;%QTDIR%\bin
   # Install zint from source
   - curl -L https://downloads.sourceforge.net/project/zint/zint/2.6.5/zint-2.6.5.tar.gz -o zint-2.6.5.tar.gz
   - 7z x zint-2.6.5.tar.gz
@@ -33,9 +33,9 @@ install:
   - cd build
   - cmake -G "Visual Studio 15 2017 Win64" ..
   - cmake --build . --config Release --target zint
-  - cd ../..
-  - set CMAKE_INCLUDE_PATH=%CD%/zint-2.6.5/backend
-  - set CMAKE_LIBRARY_PATH=%CD%/zint-2.6.5/build/backend/Release
+  - cd ..\..
+  - set CMAKE_INCLUDE_PATH=%CD%\zint-2.6.5\backend
+  - set CMAKE_LIBRARY_PATH=%CD%\zint-2.6.5\build\backend\Release
   - dir %CMAKE_INCLUDE_PATH%
   - dir %CMAKE_LIBRARY_PATH%
   
