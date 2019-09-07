@@ -22,6 +22,7 @@ init:
   - git config --global core.autocrlf true
 
 install:
+  # Locate Qt installation
   - set QTDIR=c:\Qt\5.11\msvc2017_64
   - set PATH=%PATH%;%QTDIR%\bin
   # Install zint from source
@@ -32,7 +33,7 @@ install:
   - mkdir build
   - cd build
   - cmake -G "Visual Studio 15 2017 Win64" ..
-  - cmake --build . --config Release --target zint
+  - cmake --build . --config Release --target zint # Just build DLL
   - cd ..\..
   - set CMAKE_INCLUDE_PATH=%CD%\zint-2.6.5\backend
   - set CMAKE_LIBRARY_PATH=%CD%\zint-2.6.5\build\backend\Release
