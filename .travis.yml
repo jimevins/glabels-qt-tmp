@@ -62,7 +62,7 @@ matrix:
     before_deploy:
       - git config --local user.name "Jim Evins (Travis CI)"
       - git config --local user.email evins@snaught.com
-      - git tag glabels-${VERSION}
+      - git tag -f glabels-${VERSION}
 
     deploy:
       provider: releases
