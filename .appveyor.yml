@@ -46,7 +46,7 @@ build_script:
   - git checkout master # re-attach to master to satisfy auto version tooling
   - mkdir build
   - cd build
-  - cmake -G "Visual Studio 15 2017 Win64" .. -DCMAKE_PREFIX_PATH=%QTDIR% -DCMAKE_TOOLCHAIN_FILE=C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_INCLUDE_PATH=%CMAKE_INCLUDE_PATH% -DCMAKE_LIBRARY_PATH=%CMAKE_LIBRARY_PATH%
+  - cmake -G "Visual Studio 15 2017 Win64" .. -DCMAKE_PREFIX_PATH=%QTDIR% -DCMAKE_TOOLCHAIN_FILE=C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
   - cmake --build . --config Release
   - ctest -C Release
   - cpack -C Release -G NSIS64
