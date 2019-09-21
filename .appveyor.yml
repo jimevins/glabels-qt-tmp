@@ -29,18 +29,6 @@ install:
   - vcpkg install zlib:x64-windows
   - vcpkg install libqrencode:x64-windows
   - vcpkg integrate install
-  # Install zint from source
-  - curl -L https://downloads.sourceforge.net/project/zint/zint/2.6.5/zint-2.6.5.tar.gz -o zint-2.6.5.tar.gz
-  - 7z x zint-2.6.5.tar.gz
-  - 7z x zint-2.6.5.tar
-  - cd zint-2.6.5
-  - mkdir build
-  - cd build
-  - cmake -G "Visual Studio 15 2017 Win64" ..
-  - cmake --build . --config Release --target zint # Just build DLL
-  - cd ..\..
-  - set CMAKE_INCLUDE_PATH=%CD%\zint-2.6.5\backend
-  - set CMAKE_LIBRARY_PATH=%CD%\zint-2.6.5\build\backend\Release
   
 build_script:
   - git checkout master # re-attach to master to satisfy auto version tooling
