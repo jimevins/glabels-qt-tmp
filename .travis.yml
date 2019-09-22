@@ -63,6 +63,7 @@ matrix:
       - git config --local user.name "Jim Evins (Travis CI)"
       - git config --local user.email evins@snaught.com
       - git tag -f glabels-${VERSION}
+      - git tag -f continuous
 
     deploy:
       provider: releases
