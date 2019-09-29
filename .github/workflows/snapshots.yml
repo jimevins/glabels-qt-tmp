@@ -21,6 +21,10 @@ jobs:
 #        sudo apt-get -y install pkgconf libqrencode-dev
 #        sudo apt-get -y install barcode
 
+    - name: unshallow
+      run: git fetch --unshallow
+      run: git checkout master
+
     - name: build
       run: |
         mkdir build
