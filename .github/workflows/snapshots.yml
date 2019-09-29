@@ -23,7 +23,6 @@ jobs:
 
     - name: unshallow
       run: |
-        git fetch --unshallow
         git checkout master
 
     - name: cmake configure
@@ -37,6 +36,6 @@ jobs:
         make -j4
         VERSION=$(cat VERSION)
 
-    - name: text
+    - name: test
       run: |
         xvfb-run ctest
