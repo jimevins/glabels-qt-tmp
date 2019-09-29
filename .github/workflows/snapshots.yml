@@ -17,19 +17,26 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get -y install qtbase5-dev libqt5svg5-dev qttools5-dev
-#        sudo apt-get -y install xvfb
-#        sudo apt-get -y install pkgconf libqrencode-dev
-#        sudo apt-get -y install barcode
+        sudo apt-get -y install xvfb
+        sudo apt-get -y install pkgconf libqrencode-dev
+        sudo apt-get -y install barcode
 
     - name: unshallow
-      run: git fetch --unshallow
-      run: git checkout master
+      run: |
+        git fetch --unshallow
+        git checkout master
 
-    - name: build
+    - name: cmake configure
       run: |
         mkdir build
         cd build
         cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+
+    - name: build
+      run: |
         make -j4
-        xvfb-run ctest
         VERSION=$(cat VERSION)
+
+    - name: text
+      run: |
+        xvfb-run ctest
