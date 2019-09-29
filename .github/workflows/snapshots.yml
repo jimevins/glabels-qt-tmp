@@ -33,10 +33,11 @@ jobs:
         mkdir build
         cd build
         cmake .. -DCMAKE_INSTALL_PREFIX=/usr
-        VERSION=$(cat VERSION)
+        export version=$(cat VERSION)
 
     - name: build
       run: |
+        echo ${version}
         cd build
         make -j2
 
@@ -59,14 +60,14 @@ jobs:
         export QMAKE_PATH=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
         ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -bundle-non-qt-libs
         ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -appimage
-        mv ./gLabels*.AppImage glabels-${VERSION}-x86_64.AppImage
+        mv ./gLabels*.AppImage glabels-${version}-x86_64.AppImage
         ls
 
     - name: deploy AppImage to release
       uses: svenstaro/upload-release-action@v1-release
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: build/glabels-${VERSION}-x86_64.AppImage
+        file: build/glabels-${version}-x86_64.AppImage
         asset_name: AppImage
         tag: snapshot
         overwrite: true
