@@ -15,6 +15,7 @@ jobs:
     
     - name: install dependencies
       run: |
+        sudo apt-get update
         sudo apt-get -y install qtbase5-dev libqt5svg5-dev qttools5-dev
 #        sudo apt-get -y install xvfb
 #        sudo apt-get -y install pkgconf libqrencode-dev
