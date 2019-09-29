@@ -11,11 +11,7 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    - uses: actions/checkout@v1
-      with:
-        ref: master
-        clean: false
-    
+
     - name: install dependencies
       run: |
         sudo apt-get update
@@ -24,9 +20,12 @@ jobs:
         sudo apt-get -y install pkgconf libqrencode-dev
         sudo apt-get -y install barcode
 
-#    - name: unshallow
-#      run: |
-#        git checkout master
+    - uses: actions/checkout@v1
+
+    - name: checkout master
+      # re-attach to master to satisfy auto versioning
+      run: |
+        git checkout master
 
     - name: cmake configure
       run: |
@@ -41,7 +40,7 @@ jobs:
         cd build
         make -j4
 
-    - name: test
+    - name: unit tests
       run: |
         cd build
         xvfb-run ctest
@@ -57,7 +56,8 @@ jobs:
         #
         make DESTDIR=appdir install
         unset QTDIR; unset QT_PLUGIN_PATH
-        ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -bundle-non-qt-libs
+        export QMAKE_PATH=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
+	./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -bundle-non-qt-libs
         ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -appimage
         mv ./gLabels*.AppImage glabels-${VERSION}-x86_64.AppImage
       
