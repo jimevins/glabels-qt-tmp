@@ -34,7 +34,7 @@ jobs:
         cd build
         cmake .. -DCMAKE_INSTALL_PREFIX=/usr
         VERSION=$(cat VERSION)
-	echo "VERSION = ${VERSION}"
+        echo "VERSION = ${VERSION}"
 
     - name: build
       run: |
