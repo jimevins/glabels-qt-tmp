@@ -1,0 +1,30 @@
+name: CI Snapshots
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v1
+    
+    - name: install dependencies
+      run: |
+        sudo apt-get -y install qtbase5-dev libqt5svg5-dev qttools5-dev
+        sudo apt-get -y install xvfb
+        sudo apt-get -y install pkgconf libqrencode-dev
+        sudo apt-get -y install barcode
+
+    - name: build
+      run: |
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+        make -j4
+        xvfb-run ctest
+        VERSION=$(cat VERSION)
