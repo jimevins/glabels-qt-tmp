@@ -57,7 +57,7 @@ jobs:
         make DESTDIR=appdir install
         unset QTDIR; unset QT_PLUGIN_PATH
         export QMAKE_PATH=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
-	./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -bundle-non-qt-libs
+        ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -bundle-non-qt-libs
         ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -appimage
         mv ./gLabels*.AppImage glabels-${VERSION}-x86_64.AppImage
       
