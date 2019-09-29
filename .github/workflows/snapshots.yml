@@ -30,11 +30,12 @@ jobs:
         mkdir build
         cd build
         cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+        VERSION=$(cat VERSION)
 
     - name: build
       run: |
+        cd build
         make -j4
-        VERSION=$(cat VERSION)
 
     - name: test
       run: |
