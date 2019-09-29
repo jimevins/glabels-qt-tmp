@@ -60,7 +60,7 @@ jobs:
         ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -bundle-non-qt-libs
         ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -appimage
         mv ./gLabels*.AppImage glabels-${VERSION}-x86_64.AppImage
-	ls
+        ls
 
     - name: deploy AppImage to release
       uses: svenstaro/upload-release-action@v1-release
