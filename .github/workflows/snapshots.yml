@@ -6,12 +6,14 @@ on:
       - master
 
 jobs:
-  build:
+  ubuntu-build:
 
     runs-on: ubuntu-18.04
 
     steps:
     - uses: actions/checkout@v1
+      with:
+        ref: master
     
     - name: install dependencies
       run: |
@@ -21,9 +23,9 @@ jobs:
         sudo apt-get -y install pkgconf libqrencode-dev
         sudo apt-get -y install barcode
 
-    - name: unshallow
-      run: |
-        git checkout master
+#    - name: unshallow
+#      run: |
+#        git checkout master
 
     - name: cmake configure
       run: |
@@ -41,3 +43,19 @@ jobs:
       run: |
         cd build
         xvfb-run ctest
+
+    - name: create AppImage
+      run: |
+        cd build
+        # Download AppImage QT deployment tool (local snapshot -- original at github/probono)
+        wget -c "https://github.com/jimevins/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
+        chmod a+x linuxdeployqt*.AppImage
+        #
+        # Create AppImage
+        #
+        make DESTDIR=appdir install
+        unset QTDIR; unset QT_PLUGIN_PATH
+        ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -bundle-non-qt-libs
+        ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -appimage
+        mv ./gLabels*.AppImage glabels-${VERSION}-x86_64.AppImage
+      
