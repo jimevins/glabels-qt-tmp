@@ -29,6 +29,7 @@ jobs:
         git checkout master
 
     - name: cmake configure
+      id: cmake_configure
       run: |
         mkdir build
         cd build
