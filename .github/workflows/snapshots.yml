@@ -33,7 +33,7 @@ jobs:
         mkdir build
         cd build
         cmake .. -DCMAKE_INSTALL_PREFIX=/usr
-        echo "##[set-output name=version]$(cat VERSION)"
+        echo "##[set-output name=version;]$(cat VERSION)"
 
     - name: build
       run: |
