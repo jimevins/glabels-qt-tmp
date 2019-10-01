@@ -90,7 +90,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        vcpkg search qt5
+        # QT5
+        vcpkg install qt5-base:x64-windows qt5-svg:x64-windows qt5-tools:x64-windows
         # Zlib and QREncode
         vcpkg install zlib:x64-windows
         vcpkg install libqrencode:x64-windows
