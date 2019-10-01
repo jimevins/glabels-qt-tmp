@@ -84,18 +84,17 @@ jobs:
   #############################################################################
   windows-build:
 
-    runs-on: windows-2019
+    runs-on: windows-2016
 
     steps:
 
-#    - name: Install dependencies
-#      run: |
-#        sudo apt-get update
-#        sudo apt-get -y install qtbase5-dev libqt5svg5-dev qttools5-dev
-#        sudo apt-get -y install xvfb
-#        sudo apt-get -y install pkgconf libqrencode-dev
-#        sudo apt-get -y install barcode
-#
+    - name: Install dependencies
+      run: |
+        # Zlib and QREncode
+        vcpkg install zlib:x64-windows
+        vcpkg install libqrencode:x64-windows
+        vcpkg integrate install
+
     - name: Clone
       uses: actions/checkout@v1
 
