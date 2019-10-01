@@ -86,8 +86,8 @@ jobs:
 
     runs-on: windows-2019
 
-#    steps:
-#
+    steps:
+
 #    - name: Install dependencies
 #      run: |
 #        sudo apt-get update
