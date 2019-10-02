@@ -17,14 +17,6 @@ jobs:
 
     steps:
 
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get -y install qtbase5-dev libqt5svg5-dev qttools5-dev
-        sudo apt-get -y install xvfb
-        sudo apt-get -y install pkgconf libqrencode-dev
-        sudo apt-get -y install barcode
-
     - name: Clone
       uses: actions/checkout@v1
 
@@ -32,6 +24,14 @@ jobs:
       # re-attach to master to satisfy auto versioning
       run: |
         git checkout master
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install qtbase5-dev libqt5svg5-dev qttools5-dev
+        sudo apt-get -y install xvfb
+        sudo apt-get -y install pkgconf libqrencode-dev
+        sudo apt-get -y install barcode
 
     - name: Cmake configure
       id: cmake_configure
@@ -88,6 +88,14 @@ jobs:
 
     steps:
 
+    - name: Clone
+      uses: actions/checkout@v1
+
+    - name: Checkout master
+      # re-attach to master to satisfy auto versioning
+      run: |
+        git checkout master
+
     - name: Install dependencies
       run: |
         # QT5
@@ -96,14 +104,6 @@ jobs:
         vcpkg install zlib:x64-windows
         vcpkg install libqrencode:x64-windows
         vcpkg integrate install
-
-    - name: Clone
-      uses: actions/checkout@v1
-
-    - name: Checkout master
-      # re-attach to master to satisfy auto versioning
-      run: |
-        git checkout master
 
     - name: Cmake configure
       id: cmake_configure
