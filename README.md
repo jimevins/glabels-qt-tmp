@@ -41,8 +41,8 @@ Continuous integration snapshots are not official releases.  These snapshots rep
 bleeding-edge development (unstable) code.  Please, DO NOT use it in a production environment.  Do not
 expect compatibility or consistency of features between snapshots.
 
-[AppImage](http:appimage.org) and a windows installer are available in
-*[Releases](https://github.com/jimevins/glabels-qt/releases)*.
+Pre-release Linux [AppImage](http:appimage.org) and Windows binaries are available in
+**[Releases](https://github.com/jimevins/glabels-qt/releases)**.
 
 Some third-party packages are also available:
 
