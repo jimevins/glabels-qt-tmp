@@ -22,13 +22,6 @@ gLabels-qt is the development version of the next major version of gLabels (a.k.
 - Many new product templates
 
 
-## Status
-
-gLabels-qt has been under off-and-on development for several years.
-It is still missing a couple of features to bring it in parity with glabels-3.4.
-However, it is now fairly mature and usable.  Some minor cleanup is still needed.
-
-
 ## Download
 
 ### Latest Release
@@ -41,7 +34,7 @@ Continuous integration snapshots are not official releases.  These snapshots rep
 bleeding-edge development (unstable) code.  Please, DO NOT use it in a production environment.  Do not
 expect compatibility or consistency of features between snapshots.
 
-Pre-release Linux [AppImage](http:appimage.org) and Windows binaries are available in
+Pre-release Linux [AppImage](http:appimage.org) and Windows installer binaries are available in
 **[Releases](https://github.com/jimevins/glabels-qt/releases)**.
 
 Some third-party packages are also available:
