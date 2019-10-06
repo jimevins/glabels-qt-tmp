@@ -1,0 +1,151 @@
+name: CI Snapshots
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  #############################################################################
+  #
+  # Ubuntu Build
+  #
+  #############################################################################
+  ubuntu-build:
+
+    runs-on: ubuntu-18.04
+
+    steps:
+
+    - name: Clone
+      uses: actions/checkout@v1
+
+    - name: Checkout master
+      # re-attach to master to satisfy auto versioning
+      run: |
+        git checkout master
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install qtbase5-dev libqt5svg5-dev qttools5-dev
+        sudo apt-get -y install xvfb
+        sudo apt-get -y install pkgconf libqrencode-dev
+        sudo apt-get -y install barcode
+
+    - name: Cmake configure
+      id: cmake_configure
+      run: |
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+        echo "##[set-output name=version;]$(cat VERSION)"
+
+    - name: Build
+      run: |
+        echo ${version}
+        cd build
+        make -j2
+
+    - name: Unit tests
+      run: |
+        cd build
+        xvfb-run ctest
+
+    - name: Create AppImage
+      run: |
+        cd build
+        # Download AppImage QT deployment tool (local snapshot -- original at github/probono)
+        wget -c "https://github.com/jimevins/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
+        chmod a+x linuxdeployqt*.AppImage
+        #
+        # Create AppImage
+        #
+        make DESTDIR=appdir install
+        unset QTDIR; unset QT_PLUGIN_PATH
+        export QMAKE_PATH=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
+        ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -bundle-non-qt-libs
+        ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -appimage
+        mv ./gLabels*.AppImage glabels-$(cat VERSION)-x86_64.AppImage
+
+    - name: Deploy AppImage to GitHub Releases
+      uses: svenstaro/upload-release-action@v1-release
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ${{ format('build/glabels-{0}-x86_64.AppImage', steps.cmake_configure.outputs.version) }}
+        asset_name: ${{ format('build/glabels-{0}-x86_64.AppImage', steps.cmake_configure.outputs.version) }}
+        tag: ${{ steps.cmake_configure.outputs.version }}
+        overwrite: true
+
+  #############################################################################
+  #
+  # Windows Build
+  #
+  #############################################################################
+  windows-build:
+
+    runs-on: windows-2016
+
+    steps:
+
+    - name: Clone
+      uses: actions/checkout@v1
+
+    - name: Checkout master
+      # re-attach to master to satisfy auto versioning
+      run: |
+        git checkout master
+
+    - name: Install dependencies
+      run: |
+        # QT5
+        vcpkg install qt5-base:x64-windows qt5-svg:x64-windows qt5-tools:x64-windows
+        # Zlib and QREncode
+        vcpkg install zlib:x64-windows
+        vcpkg install libqrencode:x64-windows
+        vcpkg integrate install
+
+    - name: Cmake configure
+      id: cmake_configure
+      run: |
+        mkdir build
+        cd build
+        cmake .. -G "Visual Studio 15 2017 Win64" -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
+        echo "##[set-output name=version;]$(cat VERSION)"
+#
+#    - name: Build
+#      run: |
+#        echo ${version}
+#        cd build
+#        make -j2
+#
+#    - name: Unit tests
+#      run: |
+#        cd build
+#        xvfb-run ctest
+#
+#    - name: Create AppImage
+#      run: |
+#        cd build
+#        # Download AppImage QT deployment tool (local snapshot -- original at github/probono)
+#        wget -c "https://github.com/jimevins/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" 
+#        chmod a+x linuxdeployqt*.AppImage
+#        #
+#        # Create AppImage
+#        #
+#        make DESTDIR=appdir install
+#        unset QTDIR; unset QT_PLUGIN_PATH
+#        export QMAKE_PATH=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
+#        ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -bundle-non-qt-libs
+#        ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -qmake=${QMAKE_PATH} -appimage
+#        mv ./gLabels*.AppImage glabels-$(cat VERSION)-x86_64.AppImage
+#
+#    - name: Deploy AppImage to GitHub Releases
+#      uses: svenstaro/upload-release-action@v1-release
+#      with:
+#        repo_token: ${{ secrets.GITHUB_TOKEN }}
+#        file: ${{ format('build/glabels-{0}-x86_64.AppImage', steps.cmake_configure.outputs.version) }}
+#        asset_name: ${{ format('build/glabels-{0}-x86_64.AppImage', steps.cmake_configure.outputs.version) }}
+#        tag: ${{ steps.cmake_configure.outputs.version }}
+#        overwrite: true
+
