@@ -43,7 +43,7 @@ expect compatibility or consistency of features between snapshots.
 
 [AppImage](http:appimage.org) and a windows installer are available in
 
-    [Release](https://github.com/jimevins/glabels-qt/releases).
+ - [Release](https://github.com/jimevins/glabels-qt/releases).
 
 Some third-party packages are also available:
 
@@ -95,6 +95,5 @@ restrictive licensing:
 
    The XML files in the "templates/" subdirectory constitute the glabels
    label database.  No copyright is claimed on the facts contained within
-   the database and can be used for any purpose.  However, to clear up any
-   ambiguity, the DTD file that defines the format of these files is
+   the database and can be used for any purpose.  The files themselves are
    licensed using the MIT/X license, see [templates/LICENSE](templates/LICENSE).
