@@ -42,8 +42,7 @@ bleeding-edge development (unstable) code.  Please, DO NOT use it in a productio
 expect compatibility or consistency of features between snapshots.
 
 [AppImage](http:appimage.org) and a windows installer are available in
-
- - [Release](https://github.com/jimevins/glabels-qt/releases).
+*[Releases](https://github.com/jimevins/glabels-qt/releases)*.
 
 Some third-party packages are also available:
 
@@ -89,11 +88,11 @@ restrictive licensing:
    gLabels-qt currently includes a version of the glbarcode++ library, located in
    the "glbarcode/" subdirectory.  It is licensed under the GNU LESSER GENERAL
    PUBLIC LICENSE (LGPL); either version 3 of the License, or (at your option)
-   any later version -- see the [glbarcode/LICENSE](glbarcode/LICENSE).
+   any later version.  See [glbarcode/LICENSE](glbarcode/LICENSE).
 
 ### Template Database
 
    The XML files in the "templates/" subdirectory constitute the glabels
    label database.  No copyright is claimed on the facts contained within
    the database and can be used for any purpose.  The files themselves are
-   licensed using the MIT/X license, see [templates/LICENSE](templates/LICENSE).
+   licensed using the MIT/X license.  See [templates/LICENSE](templates/LICENSE).
