@@ -94,7 +94,7 @@ matrix:
       - cd build
       - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/opt/qt
       - make -j4
-      #- ctest --verbose
+      - ctest --verbose
       - VERSION=$(cat VERSION)
 
 
